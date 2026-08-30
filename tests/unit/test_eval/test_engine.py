@@ -69,6 +69,43 @@ class TestPolymorphicRouter:
         assert res.is_correct is True
         assert res.eval_type == "dataframe_diff"
 
+    def test_route_math_symbolic_eval(self):
+        task = BenchmarkTask(
+            task_id="t_math",
+            benchmark_name="math",
+            query="Solve 2x + 4 = 10",
+            ground_truth=r"\boxed{3}",
+            eval_type="math_symbolic"
+        )
+        res = evaluate_task_result(task, r"The answer is \boxed{3}")
+        assert res.is_correct is True
+        assert res.eval_type == "math_symbolic"
+        assert res.score == 1.0
+
+    def test_route_fraction_eval(self):
+        task = BenchmarkTask(
+            task_id="t_frac",
+            benchmark_name="math",
+            query="Simplify 3/6",
+            ground_truth=r"\boxed{\frac{1}{2}}",
+            eval_type="fraction"
+        )
+        res = evaluate_task_result(task, "0.5")
+        assert res.is_correct is True
+        assert res.eval_type == "fraction"
+
+    def test_route_set_eval(self):
+        task = BenchmarkTask(
+            task_id="t_set",
+            benchmark_name="lila",
+            query="Prime factors of 6",
+            ground_truth="{2, 3}",
+            eval_type="set"
+        )
+        res = evaluate_task_result(task, "{3, 2}")
+        assert res.is_correct is True
+        assert res.eval_type == "set"
+
     def test_unknown_eval_type_fallback(self):
         task = BenchmarkTask(
             task_id="t_unknown",

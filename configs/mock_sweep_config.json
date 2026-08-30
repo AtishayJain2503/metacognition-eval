@@ -1,0 +1,69 @@
+{
+  "run_label": "Mock_Benchmark_Evaluation_Parity_Sweep",
+  "output_dir": "./results/mock_sweep",
+  "mode": "both",
+  "models": [
+    {
+      "name": "Qwen2.5-Math-7B",
+      "provider": "mock_runner",
+      "model_id": "scenario:perfect"
+    },
+    {
+      "name": "DeepSeek-R1-7B",
+      "provider": "mock_runner",
+      "model_id": "scenario:deepseek_r1_reasoning"
+    },
+    {
+      "name": "Phi4-mini-reasoning",
+      "provider": "mock_runner",
+      "model_id": "scenario:perfect"
+    },
+    {
+      "name": "Llama3.2-3B",
+      "provider": "mock_runner",
+      "model_id": "scenario:self_correction"
+    },
+    {
+      "name": "Qwen2.5-Math-1.5B",
+      "provider": "mock_runner",
+      "model_id": "scenario:perfect"
+    },
+    {
+      "name": "DeepSeek-R1-1.5B",
+      "provider": "mock_runner",
+      "model_id": "scenario:deepseek_r1_reasoning"
+    },
+    {
+      "name": "Qwen3-4B-Thinking",
+      "provider": "mock_runner",
+      "model_id": "scenario:data_analytics_pipeline"
+    }
+  ],
+  "datasets": [
+    {
+      "name": "math",
+      "split": "test",
+      "max_tasks": 5
+    },
+    {
+      "name": "putnam",
+      "split": "test",
+      "max_tasks": 5
+    },
+    {
+      "name": "lila",
+      "split": "test",
+      "max_tasks": 5
+    }
+  ],
+  "max_turns": 8,
+  "max_correction_attempts": 2,
+  "enable_planning": true,
+  "verify_intermediate": true,
+  "temperature": 0.0,
+  "max_tokens": 1024,
+  "enable_telemetry": true,
+  "telemetry_sample_interval_ms": 20,
+  "export_jsonl": true,
+  "export_otlp": false
+}

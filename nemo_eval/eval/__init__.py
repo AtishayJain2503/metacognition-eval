@@ -19,6 +19,16 @@ from nemo_eval.eval.exact import (
     strip_articles,
     strip_markdown,
 )
+from nemo_eval.eval.math_eval import (
+    SympyMathEvaluator,
+    check_algebraic_equivalence,
+    check_fraction_equivalence,
+    check_set_and_interval_equivalence,
+    evaluate_math_expression,
+    extract_latex_boxed,
+    normalize_latex_expression,
+    parse_math_to_sympy,
+)
 from nemo_eval.eval.metrics import (
     compute_execution_accuracy,
     compute_mean_score,
@@ -68,4 +78,12 @@ __all__ = [
     "generate_scorecard",
     "format_scorecard_markdown",
     "export_scorecard_json",
+    "SympyMathEvaluator",
+    "evaluate_math_expression",
+    "normalize_latex_expression",
+    "parse_math_to_sympy",
+    "check_algebraic_equivalence",
+    "check_fraction_equivalence",
+    "check_set_and_interval_equivalence",
+    "extract_latex_boxed",
 ]

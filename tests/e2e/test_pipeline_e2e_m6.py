@@ -23,6 +23,7 @@ class TestPipelineE2E:
         config = PipelineConfig(
             run_label="E2E_Test_Run",
             output_dir=str(output_dir),
+            mode="agentic",
             models=[
                 ModelSpec(name="mock_success", provider="mock", model_id="scenario:success"),
                 ModelSpec(name="mock_fail", provider="mock", model_id="scenario:fail")
@@ -69,11 +70,11 @@ class TestPipelineE2E:
         assert "mock_success" in md_content
         assert "mock_fail" in md_content
         
-        # Check that JSONL trajectories were exported
+        # Check that JSONL trajectories were exported (2 specific + 1 master streaming_trajectories.jsonl)
         jsonl_files = list(output_dir.glob("*.jsonl"))
-        assert len(jsonl_files) == 2
+        assert len(jsonl_files) == 3
         
         # Check that OTLP spans were generated (we enabled export_otlp but let's see if exporter does it)
         # Wait, runner doesn't call `write_otlp_spans` automatically yet.
         # But we can assert the JSONL streaming worked.
-        assert "trajectories_mock_success_synthetic.jsonl" in [f.name for f in jsonl_files]
+        assert "trajectories_mock_success_synthetic_agentic.jsonl" in [f.name for f in jsonl_files]

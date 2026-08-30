@@ -7,7 +7,7 @@ Canonical task representations and abstract loader contracts for benchmark suite
 from abc import ABC, abstractmethod
 from enum import Enum
 from typing import Any, Dict, List, Literal, Optional
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 
 class TaskSplit(str, Enum):
@@ -24,8 +24,24 @@ class BenchmarkTask(BaseModel):
     """Canonical task representation contract for all benchmark suites."""
     model_config = ConfigDict(extra="ignore")
 
+    @model_validator(mode="before")
+    @classmethod
+    def _normalize_aliases(cls, data: Any) -> Any:
+        if isinstance(data, dict):
+            if "dataset_name" in data and "benchmark_name" not in data:
+                data["benchmark_name"] = data["dataset_name"]
+            if "problem_text" in data and "query" not in data:
+                data["query"] = data["problem_text"]
+            if "subdiscipline" in data and "metadata" not in data:
+                data["metadata"] = {"subdiscipline": data["subdiscipline"]}
+            elif "subdiscipline" in data and isinstance(data.get("metadata"), dict):
+                data["metadata"].setdefault("subdiscipline", data["subdiscipline"])
+        return data
+
     task_id: str = Field(..., description="Unique task identifier across benchmarks.")
-    benchmark_name: Literal["infiagent", "bird_sql", "databench", "synthetic"] = Field(
+    benchmark_name: Literal[
+        "infiagent", "bird_sql", "databench", "synthetic", "gsm8k", "math", "putnam", "lila"
+    ] = Field(
         ..., description="Name of the benchmark suite."
     )
     query: str = Field(..., description="The natural language instruction / query provided to the agent.")
@@ -39,15 +55,37 @@ class BenchmarkTask(BaseModel):
         default=None, description="Absolute or relative path to tabular data file (CSV, Parquet, TSV)."
     )
     ground_truth: Any = Field(
-        ..., description="Ground truth answer (scalar, boolean, list, SQL string, DataFrame dict/records)."
+        ..., description="Ground truth answer (scalar, boolean, list, SQL string, DataFrame dict/records, LaTeX/math expression)."
     )
-    eval_type: Literal["exact", "float_tol", "sql_multiset", "dataframe_diff"] = Field(
+    eval_type: Literal[
+        "exact", "float_tol", "sql_multiset", "dataframe_diff", "math_symbolic", "fraction", "set"
+    ] = Field(
         ..., description="Evaluation strategy used to compare predicted response against ground truth."
     )
     metadata: Dict[str, Any] = Field(
         default_factory=dict,
         description="Benchmark-specific metadata (difficulty, semantic_type, evidence, golden_sql, etc.)."
     )
+
+    @property
+    def dataset_name(self) -> str:
+        """Alias for benchmark_name conforming to PROJECT.md interface contract."""
+        return self.benchmark_name
+
+    @property
+    def problem_text(self) -> str:
+        """Alias for query conforming to PROJECT.md interface contract."""
+        return self.query
+
+    @property
+    def subdiscipline(self) -> str:
+        """Extract subdiscipline, subject, or category from metadata."""
+        return str(
+            self.metadata.get(
+                "subdiscipline",
+                self.metadata.get("subject", self.metadata.get("category", self.metadata.get("subcategory", "")))
+            )
+        )
 
     def to_dict(self) -> Dict[str, Any]:
         """Serialize task to a JSON-compatible dictionary."""
@@ -69,6 +107,12 @@ class BaseDatasetLoader(ABC):
     ):
         self.dataset_root = dataset_root
         self.split = split
+
+    def load(self, split: Optional[str] = None, limit: Optional[int] = None) -> List[BenchmarkTask]:
+        """Convenience alias for load_tasks conforming to PROJECT.md interface contract."""
+        if split is not None:
+            self.split = TaskSplit(split) if isinstance(split, str) else split
+        return self.load_tasks(limit=limit)
 
     @abstractmethod
     def load_tasks(self, limit: Optional[int] = None) -> List[BenchmarkTask]:

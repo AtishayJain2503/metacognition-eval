@@ -32,11 +32,13 @@ class DeterministicMockLLMClient(BaseLLMClient):
         pattern_handlers: Optional[Dict[str, Union[LLMResponse, Callable[[List[LLMMessage]], LLMResponse]]]] = None,
         inject_errors: Optional[List[Optional[Exception]]] = None,
         model_name: str = "mock-deterministic-llm",
+        responses: Optional[Dict[str, str]] = None,
         **kwargs
     ):
         config = ModelConfig(model_name=model_name, **kwargs)
         super().__init__(config)
 
+        self.responses = responses or {}
         self._has_explicit_queue = response_queue is not None
         self.script_mode = script_mode if not self._has_explicit_queue else None
         self.turn_counter = 0
@@ -79,10 +81,28 @@ class DeterministicMockLLMClient(BaseLLMClient):
 
     def generate(
         self,
-        messages: List[LLMMessage],
+        messages: Union[List[LLMMessage], str],
         tools: Optional[List[Dict[str, Any]]] = None,
+        system: Optional[str] = None,
         **kwargs
     ) -> LLMResponse:
+        if isinstance(messages, str):
+            msg_list = []
+            if system:
+                msg_list.append(LLMMessage(role="system", content=system))
+            msg_list.append(LLMMessage(role="user", content=messages))
+            messages = msg_list
+        elif isinstance(messages, list):
+            msg_list = []
+            for m in messages:
+                if isinstance(m, dict):
+                    msg_list.append(LLMMessage(role=m.get("role", "user"), content=m.get("content", "")))
+                elif hasattr(m, "role"):
+                    msg_list.append(m)
+                else:
+                    msg_list.append(LLMMessage(role="user", content=str(m)))
+            messages = msg_list
+
         self.recorded_requests.append({
             "turn": self.turn_counter + 1,
             "messages": [m.model_dump() if hasattr(m, "model_dump") else m for m in messages],
@@ -104,15 +124,30 @@ class DeterministicMockLLMClient(BaseLLMClient):
             self.history_log.append(resp)
             return resp
 
-        # 3. Dynamic Pattern Handlers
-        if self.pattern_handlers and messages:
-            # Check message texts from recent to oldest
-            combined_texts = []
-            for msg in reversed(messages):
-                if msg.content:
-                    combined_texts.append(msg.content)
-            full_context = "\n".join(combined_texts)
+        # Build context text for matching
+        combined_texts = []
+        for msg in reversed(messages):
+            if msg.content:
+                combined_texts.append(msg.content)
+        full_context = "\n".join(combined_texts)
 
+        # 3. Direct response dictionary matching
+        if self.responses:
+            for k, v in self.responses.items():
+                if k in full_context:
+                    resp = LLMResponse(
+                        content=v,
+                        tool_calls=[],
+                        finish_reason="stop",
+                        prompt_tokens=50,
+                        completion_tokens=20,
+                        latency_ms=1.0,
+                    )
+                    self.history_log.append(resp)
+                    return resp
+
+        # 4. Dynamic Pattern Handlers
+        if self.pattern_handlers and messages:
             for pattern, handler in self.pattern_handlers.items():
                 if re.search(pattern, full_context, re.IGNORECASE):
                     if callable(handler):
@@ -310,12 +345,28 @@ class DeterministicMockLLMClient(BaseLLMClient):
             return resp
 
         # Default Fallback
-        resp = LLMResponse(
-            content=f"Mock response for turn {self.turn_counter}",
-            tool_calls=[],
-            finish_reason="stop",
-            prompt_tokens=50, completion_tokens=10, latency_ms=1.0
-        )
+        if self.script_mode is None:
+            resp = LLMResponse(
+                content=f"Mock response for turn {self.turn_counter}",
+                tool_calls=[],
+                finish_reason="stop",
+                prompt_tokens=50, completion_tokens=10, latency_ms=1.0
+            )
+        elif "DeepSeek-R1" in self.model_name or "Thinking" in self.model_name:
+            resp = LLMResponse(
+                content="<think>\nLet's analyze step by step.\n</think>\nThe answer is \\boxed{42}",
+                reasoning_content="Let's analyze step by step.",
+                tool_calls=[],
+                finish_reason="stop",
+                prompt_tokens=80, completion_tokens=30, latency_ms=1.0
+            )
+        else:
+            resp = LLMResponse(
+                content="After calculation, the final answer is \\boxed{42}",
+                tool_calls=[],
+                finish_reason="stop",
+                prompt_tokens=50, completion_tokens=10, latency_ms=1.0
+            )
         self.history_log.append(resp)
         return resp
 

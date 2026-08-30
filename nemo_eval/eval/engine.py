@@ -85,6 +85,16 @@ def evaluate_task_result(
             abs_tol=abs_tol
         )
 
+    elif eval_type in ("math_symbolic", "fraction", "set"):
+        from nemo_eval.eval.math_eval import evaluate_math_expression
+        return evaluate_math_expression(
+            candidate=parsed_candidate,
+            gold=gold,
+            rel_tol=rel_tol,
+            abs_tol=abs_tol,
+            eval_type=eval_type
+        )
+
     else:
         # Fallback to exact
         elapsed_ms = (time.perf_counter() - start_perf) * 1000.0

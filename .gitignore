@@ -36,3 +36,4 @@ Thumbs.db
 # Subagent / internal scratch spaces
 .agents/
 scratch/
+results/

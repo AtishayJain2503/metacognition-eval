@@ -25,6 +25,15 @@ from nemo_eval.models.groq import GroqLLMClient, extract_think_reasoning
 from nemo_eval.models.mock_runner import DeterministicMockLLMClient
 from nemo_eval.models.nemo_client import NeMoClient, extract_nemo_special_tokens
 from nemo_eval.models.openai_gateway import OpenAIGatewayClient, extract_text_fallback_tool_calls
+from nemo_eval.models.registry import (
+    MODEL_CONFIGS,
+    MODEL_FAMILIES,
+    TARGET_MODELS,
+    TargetModelSpec,
+    create_target_model_client,
+    get_model_spec,
+    get_target_models,
+)
 
 # Register standard providers in ModelRegistry
 ModelRegistry.register("groq", GroqLLMClient)
@@ -63,4 +72,12 @@ __all__ = [
     "LLMTimeoutError",
     "LLMContextLengthExceededError",
     "LLMInvalidResponseError",
+    # Target models registry
+    "TARGET_MODELS",
+    "MODEL_FAMILIES",
+    "MODEL_CONFIGS",
+    "TargetModelSpec",
+    "get_target_models",
+    "get_model_spec",
+    "create_target_model_client",
 ]

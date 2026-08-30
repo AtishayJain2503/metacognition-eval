@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 import time
+from collections import Counter
 from pathlib import Path
 from typing import List, Optional, Union
 
@@ -65,7 +66,7 @@ class TelemetryExporter:
         filename: str = "scorecard.md",
         run_label: str = "Evaluation Run",
     ) -> Path:
-        """Generate a Markdown scorecard summarizing all trajectories."""
+        """Generate a Markdown scorecard summarizing all trajectories including hardware metrics."""
         if not trajectories:
             return self._write_empty_scorecard(filename, run_label)
 
@@ -77,6 +78,10 @@ class TelemetryExporter:
         avg_gt_score = sum(t.ground_truth_score for t in trajectories) / total
         avg_steps = sum(t.total_steps for t in trajectories) / total
         avg_duration = sum(t.total_duration_ms for t in trajectories) / total
+        avg_ram = sum(t.peak_ram_mb for t in trajectories) / total
+        avg_vram = sum(t.gpu_vram_mb for t in trajectories) / total
+        total_energy = sum(t.energy_joules for t in trajectories)
+        avg_energy = total_energy / total
         total_corrections = sum(t.self_correction_attempts for t in trajectories)
         correction_successes = sum(1 for t in trajectories if t.self_correction_success)
         total_invalid_transitions = sum(t.invalid_transitions for t in trajectories)
@@ -98,14 +103,18 @@ class TelemetryExporter:
             f"| Avg SPEA | {avg_spea:.4f} |",
             f"| Avg Steps/Episode | {avg_steps:.1f} |",
             f"| Avg Duration (ms) | {avg_duration:.0f} |",
+            f"| Avg Peak RAM (MB) | {avg_ram:.2f} |",
+            f"| Avg Peak GPU VRAM (MB) | {avg_vram:.2f} |",
+            f"| Total Energy (Joules) | {total_energy:.4f} |",
+            f"| Avg Energy (Joules/Ep) | {avg_energy:.4f} |",
             f"| Total Self-Correction Attempts | {total_corrections} |",
             f"| Episodes with Successful Recovery | {correction_successes} |",
             f"| Total Invalid FSM Transitions | {total_invalid_transitions} |",
             "",
             "## Per-Episode Results",
             "",
-            "| Task ID | Model | Status | GT Score | PAS | Acc_tool | SPEA | Steps | Corrections |",
-            "|---------|-------|--------|----------|-----|----------|------|-------|-------------|",
+            "| Task ID | Model | Status | GT Score | PAS | Acc_tool | SPEA | Peak RAM (MB) | GPU VRAM (MB) | Energy (J) | Steps | Corrections |",
+            "|---------|-------|--------|----------|-----|----------|------|---------------|---------------|------------|-------|-------------|",
         ]
 
         for t in trajectories:
@@ -114,6 +123,7 @@ class TelemetryExporter:
                 f"| {t.task_id} | {t.model_name} | {status_icon} {t.status} "
                 f"| {t.ground_truth_score:.3f} | {t.plan_adherence_score:.3f} "
                 f"| {t.tool_accuracy:.3f} | {t.spea:.3f} "
+                f"| {t.peak_ram_mb:.2f} | {t.gpu_vram_mb:.2f} | {t.energy_joules:.4f} "
                 f"| {t.total_steps} | {t.self_correction_attempts} |"
             )
 
@@ -125,7 +135,6 @@ class TelemetryExporter:
             "|-----------|-------------------|",
         ]
 
-        from collections import Counter
         state_counts: Counter = Counter()
         for t in trajectories:
             for step in t.steps:
@@ -148,23 +157,30 @@ class TelemetryExporter:
     ) -> Path:
         """
         Write OTLP-compatible span records for the trajectory.
-        Each StepEvent becomes one span.
+        Each StepEvent becomes one span with latency and hardware metrics.
         """
         filename = filename or f"spans_{trajectory.task_id}.json"
         spans = []
         trace_id = trajectory.task_id.replace("-", "")[:32].ljust(32, "0")
 
         for step in trajectory.steps:
+            attrs = [
+                {"key": k, "value": {"doubleValue": float(v)}}
+                for k, v in step.metrics.items()
+            ]
+            attrs.extend([
+                {"key": "peak_ram_mb", "value": {"doubleValue": float(step.peak_ram_mb)}},
+                {"key": "gpu_vram_mb", "value": {"doubleValue": float(step.gpu_vram_mb)}},
+                {"key": "energy_joules", "value": {"doubleValue": float(step.energy_joules)}},
+            ])
+
             span = {
                 "traceId": trace_id,
                 "spanId": f"{step.step_id:016x}",
                 "name": step.state.value,
                 "startTimeUnixNano": int(step.timestamp * 1e9),
                 "endTimeUnixNano": int((step.timestamp + step.duration_ms / 1000.0) * 1e9),
-                "attributes": [
-                    {"key": k, "value": {"doubleValue": v}}
-                    for k, v in step.metrics.items()
-                ],
+                "attributes": attrs,
                 "status": {
                     "code": "STATUS_CODE_ERROR" if step.invalid_transition else "STATUS_CODE_OK"
                 },

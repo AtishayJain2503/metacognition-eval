@@ -296,6 +296,7 @@ class AgentLoop:
                     TrajectoryState.TOOL_EXECUTION,
                     input_payload={
                         "sub_goal_id": sg.id,
+                        "tool": tool_call.tool_name,
                         "tool_name": tool_call.tool_name,
                         "arguments": tool_call.arguments,
                     },
@@ -506,3 +507,99 @@ class AgentLoop:
             plan=plan,
             success=traj_status == "success",
         )
+
+
+# ---------------------------------------------------------------------------
+# AgenticEngine Wrapper
+# ---------------------------------------------------------------------------
+
+class AgenticEngine:
+    """
+    9-State Agentic FSM Execution Engine.
+
+    Orchestrates DAG decomposition (TaskPlanner), auxiliary Python REPL tool
+    dispatch (ToolOrchestrator), intermediate verification, self-correction recovery,
+    and final answer extraction with step-level telemetry.
+    """
+
+    def __init__(
+        self,
+        model: Optional[Any] = None,
+        config: Optional[AgentConfig] = None,
+    ):
+        self.model = model
+        self.config = config or AgentConfig()
+
+    def evaluate_task(
+        self,
+        task: Any,
+        model: Optional[Any] = None,
+        max_turns: Optional[int] = None,
+        **kwargs
+    ) -> EpisodeTrajectory:
+        """
+        Execute multi-turn agentic evaluation on a benchmark task.
+
+        Args:
+            task: The BenchmarkTask instance to evaluate.
+            model: Optional model client override.
+            max_turns: Optional override for max turns.
+
+        Returns:
+            EpisodeTrajectory with all 9-state transitions and hardware telemetry.
+        """
+        active_model = model or self.model
+        if active_model is None:
+            raise ValueError("No LLM client provided to AgenticEngine.")
+
+        cfg = self.config
+        if max_turns is not None:
+            cfg = cfg.model_copy(update={"max_turns": max_turns})
+
+        loop = AgentLoop(model_client=active_model, config=cfg)
+        query = getattr(task, "problem_text", None) or getattr(task, "query", "")
+        db_path = getattr(task, "db_path", None)
+        table_path = getattr(task, "table_path", None)
+        model_name = getattr(active_model, "model_name", "unknown")
+
+        result = loop.run(
+            task_id=task.task_id,
+            query=query,
+            db_path=db_path,
+            table_path=table_path,
+            model_name=model_name,
+        )
+
+        traj = result.trajectory
+        final_ans = result.final_answer
+
+        # Answer extraction and evaluation
+        from nemo_eval.telemetry.extractor import ValueExtractor
+        from nemo_eval.eval.engine import evaluate_task_result
+        from nemo_eval.eval.math_eval import SympyMathEvaluator
+
+        eval_type = getattr(task, "eval_type", "exact")
+        extracted = ValueExtractor.extract_value(
+            str(final_ans) if final_ans is not None else "",
+            expected_type=eval_type,
+        )
+
+        gt_score = 0.0
+        if task.ground_truth is not None and extracted:
+            try:
+                eval_res = evaluate_task_result(task=task, candidate_output=extracted)
+                gt_score = float(eval_res.score)
+            except Exception:
+                try:
+                    gt_score = float(SympyMathEvaluator.evaluate(
+                        candidate=extracted,
+                        ground_truth=task.ground_truth,
+                        eval_type=eval_type,
+                    ))
+                except Exception:
+                    gt_score = 1.0 if str(extracted).strip() == str(task.ground_truth).strip() else 0.0
+
+        traj.ground_truth_score = gt_score
+        traj.final_answer = extracted or final_ans
+        return traj
+

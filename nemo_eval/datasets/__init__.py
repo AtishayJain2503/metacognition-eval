@@ -20,10 +20,22 @@ from nemo_eval.datasets.databench import (
     categorize_semantic_type,
     map_semantic_type_to_eval_strategy,
 )
+from nemo_eval.datasets.gsm8k import (
+    GSM8KLoader,
+)
 from nemo_eval.datasets.infiagent import (
     InfiAgentLoader,
     extract_final_answer,
     extract_python_code_blocks,
+)
+from nemo_eval.datasets.lila import (
+    LilaLoader,
+)
+from nemo_eval.datasets.math import (
+    MATHLoader,
+)
+from nemo_eval.datasets.putnam import (
+    PutnamBenchLoader,
 )
 from nemo_eval.datasets.synthetic import (
     SyntheticBenchmarkGenerator,
@@ -44,4 +56,8 @@ __all__ = [
     "categorize_semantic_type",
     "map_semantic_type_to_eval_strategy",
     "SyntheticBenchmarkGenerator",
+    "GSM8KLoader",
+    "MATHLoader",
+    "PutnamBenchLoader",
+    "LilaLoader",
 ]

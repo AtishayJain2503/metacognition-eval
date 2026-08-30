@@ -1,79 +1,124 @@
 """
 nemo_eval.pipeline.runner
 --------------------------
-Multi-dataset, multi-model evaluation harness.
+Multi-dataset, multi-model evaluation sweep and dual-mode execution engine harness.
 
-Executes AgentLoop across all (model, dataset, task) combinations,
-collecting EpisodeTrajectory records and passing them to the evaluator
-and reporter.
+Executes VanillaEngine (pure zero-shot CoT) and AgenticEngine (9-state FSM + REPL)
+over identical dataset splits for direct parity analysis, tracking hardware telemetry
+(duration_ms, peak_ram_mb, gpu_vram_mb, gpu_power_watts, energy_joules) and emitting
+streaming JSONL traces to results/.
 """
 
 from __future__ import annotations
 
+import json
 import os
 import time
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple, Union
 
-from nemo_eval.agents.agent_loop import AgentLoop, AgentConfig, AgentResult
-from nemo_eval.agents.planner import PlannerConfig
-from nemo_eval.agents.orchestrator import OrchestratorConfig
-from nemo_eval.correction.self_correct import SelfCorrectMetrics, CorrectionStats
-from nemo_eval.datasets.base import BenchmarkTask, BaseDatasetLoader
-from nemo_eval.datasets.synthetic import SyntheticBenchmarkGenerator
-from nemo_eval.eval.engine import evaluate_task_result
+from nemo_eval.agents.agent_loop import AgentConfig, AgentLoop, AgenticEngine
+from nemo_eval.agents.vanilla import VanillaEngine
+from nemo_eval.correction.self_correct import CorrectionStats, SelfCorrectMetrics
+from nemo_eval.datasets.base import BaseDatasetLoader, BenchmarkTask
+from nemo_eval.datasets.lila import LilaLoader
+from nemo_eval.datasets.math import MATHLoader
+from nemo_eval.datasets.putnam import PutnamBenchLoader
 from nemo_eval.models import get_model_client
-from nemo_eval.pipeline.config import PipelineConfig, ModelSpec, DatasetSpec
+from nemo_eval.pipeline.config import DatasetSpec, ExecutionMode, ModelSpec, PipelineConfig
 from nemo_eval.telemetry.exporters import TelemetryExporter
 from nemo_eval.telemetry.tracer import EpisodeTrajectory
 
 
 class RunRecord:
-    """Aggregated results for one (model, dataset) evaluation run."""
+    """Aggregated results for one (model, dataset, mode) evaluation run."""
 
-    def __init__(self, model_name: str, dataset_name: str):
+    def __init__(self, model_name: str, dataset_name: str, mode: str = "agentic"):
         self.model_name = model_name
         self.dataset_name = dataset_name
+        self.mode = mode
         self.trajectories: List[EpisodeTrajectory] = []
         self.correction_stats: List[CorrectionStats] = []
         self.gt_scores: List[float] = []
         self.task_ids: List[str] = []
         self.elapsed_ms: float = 0.0
 
-    def add(self, result: AgentResult, gt_score: float) -> None:
-        traj = result.trajectory
-        traj.ground_truth_score = gt_score
+    def add_trajectory(self, traj: EpisodeTrajectory) -> None:
         self.trajectories.append(traj)
-        self.gt_scores.append(gt_score)
-        self.task_ids.append(result.task_id)
-        self.correction_stats.append(
-            SelfCorrectMetrics.compute(traj)
-        )
+        self.gt_scores.append(traj.ground_truth_score)
+        self.task_ids.append(traj.task_id)
+        if traj.steps:
+            self.correction_stats.append(SelfCorrectMetrics.compute(traj))
+
+    def add(self, result: Any, gt_score: float) -> None:
+        """Compatibility helper for AgentResult or direct EpisodeTrajectory."""
+        if hasattr(result, "trajectory"):
+            traj = result.trajectory
+            traj.ground_truth_score = gt_score
+        elif isinstance(result, EpisodeTrajectory):
+            traj = result
+            traj.ground_truth_score = gt_score
+        else:
+            return
+        self.add_trajectory(traj)
 
     def summary(self) -> Dict[str, Any]:
         n = len(self.trajectories)
         if n == 0:
-            return {"model": self.model_name, "dataset": self.dataset_name, "tasks": 0}
+            return {
+                "model": self.model_name,
+                "dataset": self.dataset_name,
+                "mode": self.mode,
+                "tasks": 0,
+                "success_rate": 0.0,
+                "accuracy": 0.0,
+                "avg_gt_score": 0.0,
+                "avg_duration_ms": 0.0,
+                "avg_peak_ram_mb": 0.0,
+                "avg_gpu_vram_mb": 0.0,
+                "avg_energy_joules": 0.0,
+                "avg_pas": 0.0,
+                "avg_tool_accuracy": 0.0,
+                "avg_spea": 0.0,
+                "avg_scsr": 0.0,
+                "avg_cei": 0.0,
+                "avg_top": 0.0,
+                "total_self_corrections": 0,
+                "elapsed_ms": 0.0,
+            }
+
+        passed = sum(1 for t in self.trajectories if t.ground_truth_score == 1.0)
+        avg_dur = sum(t.total_duration_ms for t in self.trajectories) / n
+        avg_ram = sum(t.peak_ram_mb for t in self.trajectories) / n
+        avg_vram = sum(t.gpu_vram_mb for t in self.trajectories) / n
+        avg_energy = sum(t.energy_joules for t in self.trajectories) / n
+
         return {
             "model": self.model_name,
             "dataset": self.dataset_name,
+            "mode": self.mode,
             "tasks": n,
-            "success_rate": sum(1 for t in self.trajectories if t.status == "success") / n,
-            "avg_gt_score": sum(self.gt_scores) / n,
+            "success_rate": passed / n,
+            "accuracy": (passed / n) * 100.0,
+            "avg_gt_score": sum(self.gt_scores) / n if self.gt_scores else 0.0,
+            "avg_duration_ms": round(avg_dur, 2),
+            "avg_peak_ram_mb": round(avg_ram, 2),
+            "avg_gpu_vram_mb": round(avg_vram, 2),
+            "avg_energy_joules": round(avg_energy, 4),
             "avg_pas": sum(t.plan_adherence_score for t in self.trajectories) / n,
             "avg_tool_accuracy": sum(t.tool_accuracy for t in self.trajectories) / n,
             "avg_spea": sum(t.spea for t in self.trajectories) / n,
-            "avg_scsr": sum(s.scsr for s in self.correction_stats) / n,
-            "avg_cei": sum(s.cei for s in self.correction_stats) / n,
-            "avg_top": sum(s.top for s in self.correction_stats) / n,
+            "avg_scsr": sum(s.scsr for s in self.correction_stats) / len(self.correction_stats) if self.correction_stats else 0.0,
+            "avg_cei": sum(s.cei for s in self.correction_stats) / len(self.correction_stats) if self.correction_stats else 0.0,
+            "avg_top": sum(s.top for s in self.correction_stats) / len(self.correction_stats) if self.correction_stats else 0.0,
             "total_self_corrections": sum(t.self_correction_attempts for t in self.trajectories),
-            "elapsed_ms": self.elapsed_ms,
+            "elapsed_ms": round(self.elapsed_ms, 2),
         }
 
 
 class BenchmarkRunner:
     """
-    Orchestrates full evaluation sweeps across all model × dataset combinations.
+    Orchestrates dual-mode and multi-model benchmark evaluation sweeps.
 
     Usage:
         config = PipelineConfig.from_json("config.json")
@@ -89,13 +134,18 @@ class BenchmarkRunner:
 
     def run(self) -> List[RunRecord]:
         """
-        Execute evaluation for all configured (model, dataset) pairs.
+        Execute evaluation sweep across all configured (model, dataset) combinations.
 
         Returns:
-            List of RunRecord, one per (model, dataset) combination.
+            List of RunRecord instances containing trajectories and telemetry.
         """
         records: List[RunRecord] = []
         datasets = self._load_datasets()
+
+        # Determine modes to evaluate
+        mode_str = str(self.config.mode.value if isinstance(self.config.mode, ExecutionMode) else self.config.mode).lower()
+        run_vanilla = mode_str in ("vanilla", "both", "dual_parity")
+        run_agentic = mode_str in ("agentic", "both", "dual_parity")
 
         for model_spec in self.config.models:
             print(f"\n[Runner] Loading model: {model_spec.name} ({model_spec.provider}/{model_spec.model_id})")
@@ -105,6 +155,15 @@ class BenchmarkRunner:
                 print(f"[Runner] Failed to load model {model_spec.name}: {e}")
                 continue
 
+            # Instantiate engines
+            sample_interval = float(self.config.telemetry_sample_interval_ms) / 1000.0
+            vanilla_engine = VanillaEngine(
+                model=model_client,
+                enable_telemetry=self.config.enable_telemetry,
+                sample_interval_s=sample_interval,
+                temperature=self.config.temperature,
+                max_tokens=self.config.max_tokens,
+            )
             agent_config = AgentConfig(
                 max_turns=self.config.max_turns,
                 max_correction_attempts=self.config.max_correction_attempts,
@@ -113,111 +172,124 @@ class BenchmarkRunner:
                 temperature=self.config.temperature,
                 max_tokens=self.config.max_tokens,
             )
-            loop = AgentLoop(model_client=model_client, config=agent_config)
+            agentic_engine = AgenticEngine(model=model_client, config=agent_config)
 
             for ds_name, tasks in datasets.items():
                 print(f"[Runner] Evaluating {model_spec.name} on {ds_name} ({len(tasks)} tasks)")
-                record = RunRecord(model_name=model_spec.name, dataset_name=ds_name)
-                t0 = time.monotonic()
 
-                for task in tasks:
-                    print(f"  [Task] {task.task_id}: {task.query[:60]}...")
-                    try:
-                        result = loop.run(
-                            task_id=task.task_id,
-                            query=task.query,
-                            db_path=task.db_path,
-                            table_path=task.table_path,
-                            model_name=model_spec.name,
-                        )
+                # 1. Vanilla execution
+                if run_vanilla:
+                    v_record = RunRecord(model_name=model_spec.name, dataset_name=ds_name, mode="vanilla")
+                    t0 = time.monotonic()
+                    for task in tasks:
+                        try:
+                            traj = vanilla_engine.evaluate_task(task)
+                            v_record.add_trajectory(traj)
+                            if self.config.export_jsonl:
+                                self._stream_trajectory(traj, model_spec.name, ds_name, "vanilla")
+                        except Exception as e:
+                            print(f"  [Vanilla Error] Task {task.task_id}: {e}")
+                    v_record.elapsed_ms = (time.monotonic() - t0) * 1000.0
+                    records.append(v_record)
+                    print(f"  [Vanilla] Done: Acc={v_record.summary()['accuracy']:.1f}% | Duration={v_record.summary()['avg_duration_ms']:.1f}ms | Energy={v_record.summary()['avg_energy_joules']:.4f}J")
 
-                        # Ground truth evaluation
-                        gt_score = 0.0
-                        if task.ground_truth is not None and result.final_answer is not None:
-                            try:
-                                eval_result = evaluate_task_result(
-                                    task=task,
-                                    candidate_output=str(result.final_answer),
-                                )
-                                gt_score = eval_result.score
-                            except Exception:
-                                gt_score = 0.0
-
-                        record.add(result, gt_score)
-                        print(f"    -> {result.trajectory.status} | GT={gt_score:.3f} | PAS={result.trajectory.plan_adherence_score:.3f}")
-
-                        # Stream JSONL
-                        if self.config.export_jsonl:
-                            self._exporter.append_jsonl(
-                                result.trajectory,
-                                filename=f"trajectories_{model_spec.name}_{ds_name}.jsonl",
-                            )
-
-                    except Exception as e:
-                        print(f"    -> ERROR: {e}")
-                        continue
-
-                record.elapsed_ms = (time.monotonic() - t0) * 1000.0
-                records.append(record)
+                # 2. Agentic execution
+                if run_agentic:
+                    a_record = RunRecord(model_name=model_spec.name, dataset_name=ds_name, mode="agentic")
+                    t0 = time.monotonic()
+                    for task in tasks:
+                        try:
+                            traj = agentic_engine.evaluate_task(task)
+                            a_record.add_trajectory(traj)
+                            if self.config.export_jsonl:
+                                self._stream_trajectory(traj, model_spec.name, ds_name, "agentic")
+                        except Exception as e:
+                            print(f"  [Agentic Error] Task {task.task_id}: {e}")
+                    a_record.elapsed_ms = (time.monotonic() - t0) * 1000.0
+                    records.append(a_record)
+                    print(f"  [Agentic] Done: Acc={a_record.summary()['accuracy']:.1f}% | PAS={a_record.summary()['avg_pas']:.2f} | Duration={a_record.summary()['avg_duration_ms']:.1f}ms | Energy={a_record.summary()['avg_energy_joules']:.4f}J")
 
         return records
 
+    def _stream_trajectory(self, traj: EpisodeTrajectory, model_name: str, ds_name: str, mode: str) -> None:
+        """Stream JSONL record to disk."""
+        try:
+            line = traj.model_dump_json() + "\n"
+            # Specific file
+            spec_file = self.output_dir / f"trajectories_{model_name}_{ds_name}_{mode}.jsonl"
+            with open(spec_file, "a", encoding="utf-8") as f:
+                f.write(line)
+            # Master log
+            master_file = self.output_dir / "streaming_trajectories.jsonl"
+            with open(master_file, "a", encoding="utf-8") as f:
+                f.write(line)
+        except Exception:
+            pass
+
     # ------------------------------------------------------------------ #
-    # Internal helpers
+    # Dataset Loading Helpers
     # ------------------------------------------------------------------ #
 
     def _load_datasets(self) -> Dict[str, List[BenchmarkTask]]:
-        """Load all configured datasets."""
+        """Load all datasets specified in config."""
         loaded: Dict[str, List[BenchmarkTask]] = {}
 
         for ds_spec in self.config.datasets:
+            ds_name_lower = ds_spec.name.lower().strip()
             try:
-                loader = self._build_loader(ds_spec)
-                tasks = loader.load(split=ds_spec.split)
-                if ds_spec.max_tasks:
-                    tasks = tasks[: ds_spec.max_tasks]
-                loaded[ds_spec.name] = tasks
-                print(f"[Runner] Loaded {len(tasks)} tasks from dataset '{ds_spec.name}'.")
+                if ds_name_lower in ("math", "hendrycks_math"):
+                    loader = MATHLoader(dataset_root=ds_spec.data_dir, max_tasks=ds_spec.max_tasks, subject=ds_spec.subject)
+                    tasks = loader.load(split=ds_spec.split, limit=ds_spec.max_tasks)
+                    loaded["math"] = tasks
+                elif ds_name_lower in ("putnam", "putnambench"):
+                    loader = PutnamBenchLoader(dataset_root=ds_spec.data_dir, max_tasks=ds_spec.max_tasks, category=ds_spec.category)
+                    tasks = loader.load(split=ds_spec.split, limit=ds_spec.max_tasks)
+                    loaded["putnam"] = tasks
+                elif ds_name_lower in ("lila", "allenai_lila"):
+                    subcats = [ds_spec.category] if ds_spec.category else ([ds_spec.subdiscipline] if ds_spec.subdiscipline else None)
+                    loader = LilaLoader(dataset_root=ds_spec.data_dir, subcategories=subcats, max_tasks_per_category=ds_spec.max_tasks)
+                    tasks = loader.load(split=ds_spec.split, limit=ds_spec.max_tasks)
+                    loaded["lila"] = tasks
+                elif ds_name_lower == "all":
+                    # Load all core benchmarks: MATH (50), Putnam (50), Lila (350)
+                    limit = ds_spec.max_tasks or 50
+                    loaded["math"] = MATHLoader().load(limit=limit)
+                    loaded["putnam"] = PutnamBenchLoader().load(limit=limit)
+                    loaded["lila"] = LilaLoader().load(limit=limit)
+                elif ds_name_lower == "synthetic":
+                    from nemo_eval.datasets.synthetic import SyntheticBenchmarkGenerator
+                    gen = SyntheticBenchmarkGenerator()
+                    tasks = gen.get_synthetic_benchmark_tasks(str(self.output_dir / "synthetic_data"))
+                    if ds_spec.max_tasks:
+                        tasks = tasks[:ds_spec.max_tasks]
+                    loaded["synthetic"] = tasks
+                elif ds_name_lower == "gsm8k":
+                    from nemo_eval.datasets.gsm8k import GSM8KLoader
+                    loader = GSM8KLoader(split=ds_spec.split, max_tasks=ds_spec.max_tasks or 50)
+                    loaded["gsm8k"] = loader.load(limit=ds_spec.max_tasks)
+                elif ds_name_lower == "infiagent":
+                    from nemo_eval.datasets.infiagent import InfiAgentLoader
+                    loader = InfiAgentLoader(data_dir=ds_spec.data_dir or "")
+                    loaded["infiagent"] = loader.load(limit=ds_spec.max_tasks)
+                elif ds_name_lower == "bird_sql":
+                    from nemo_eval.datasets.bird_sql import BirdSQLLoader
+                    loader = BirdSQLLoader(data_dir=ds_spec.data_dir or "")
+                    loaded["bird_sql"] = loader.load(limit=ds_spec.max_tasks)
+                elif ds_name_lower == "databench":
+                    from nemo_eval.datasets.databench import DataBenchLoader
+                    loader = DataBenchLoader(data_dir=ds_spec.data_dir or "")
+                    loaded["databench"] = loader.load(limit=ds_spec.max_tasks)
+                else:
+                    raise ValueError(f"Unknown benchmark dataset: '{ds_spec.name}'")
+
+                print(f"[Runner] Loaded {len(loaded.get(ds_spec.name, tasks))} tasks from dataset '{ds_spec.name}'.")
             except Exception as e:
                 print(f"[Runner] Failed to load dataset '{ds_spec.name}': {e}")
 
         return loaded
 
-    def _build_loader(self, ds_spec: DatasetSpec) -> BaseDatasetLoader:
-        """Instantiate the appropriate dataset loader."""
-        if ds_spec.name == "synthetic":
-            from nemo_eval.datasets.synthetic import SyntheticBenchmarkGenerator
-            class _SyntheticLoaderWrapper:
-                def __init__(self, out_dir):
-                    self.out_dir = out_dir
-                def load(self, split="test"):
-                    gen = SyntheticBenchmarkGenerator()
-                    return gen.get_synthetic_benchmark_tasks(str(self.out_dir))
-            return _SyntheticLoaderWrapper(self.output_dir / "synthetic_data")
-
-        # GSM8K downloads from HuggingFace — no local data_dir needed
-        if ds_spec.name == "gsm8k":
-            from nemo_eval.datasets.gsm8k import GSM8KLoader
-            return GSM8KLoader(split=ds_spec.split, max_tasks=ds_spec.max_tasks or 50)
-
-        # All other real datasets require a local data_dir
-        if not ds_spec.data_dir:
-            raise ValueError(f"Dataset '{ds_spec.name}' requires 'data_dir' in config.")
-
-        if ds_spec.name == "infiagent":
-            from nemo_eval.datasets.infiagent import InfiAgentLoader
-            return InfiAgentLoader(data_dir=ds_spec.data_dir)
-        elif ds_spec.name == "bird_sql":
-            from nemo_eval.datasets.bird_sql import BirdSQLLoader
-            return BirdSQLLoader(data_dir=ds_spec.data_dir)
-        elif ds_spec.name == "databench":
-            from nemo_eval.datasets.databench import DataBenchLoader
-            return DataBenchLoader(data_dir=ds_spec.data_dir)
-        else:
-            raise ValueError(f"Unknown dataset: {ds_spec.name}")
-
     def _build_model_client(self, spec: ModelSpec) -> Any:
-        """Build a model client from a ModelSpec."""
+        """Build model client conforming to BaseLLMClient."""
         api_key = None
         if spec.api_key_env:
             api_key = os.environ.get(spec.api_key_env)
@@ -230,6 +302,6 @@ class BenchmarkRunner:
 
         return get_model_client(
             provider=spec.provider,
-            model_name=spec.model_id,
+            model_name=spec.model_id or spec.name,
             **kwargs,
         )
