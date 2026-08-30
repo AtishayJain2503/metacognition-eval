@@ -1,0 +1,38 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Virtual Environments
+venv/
+.venv/
+env/
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+
+# Local / transient databases & logs
+*.db
+*.sqlite
+*.sqlite3
+*.log
+gsm8k_run.log
+
+# IDE & Editor configs
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Subagent / internal scratch spaces
+.agents/
+scratch/

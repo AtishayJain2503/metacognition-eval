@@ -1,0 +1,327 @@
+"""
+nemo_eval.models.base
+---------------------
+Core data contracts, abstract protocol, exception hierarchy, and dynamic model registry
+for the Model Provider and Inference Interface Layer.
+"""
+
+from __future__ import annotations
+
+import json
+import uuid
+from abc import ABC, abstractmethod
+from typing import Any, Callable, Dict, List, Literal, Optional, Type, Union
+from pydantic import BaseModel, ConfigDict, Field, model_validator
+
+
+class FunctionCall(BaseModel):
+    """Pydantic model representing a function/tool invocation."""
+    model_config = ConfigDict(extra="ignore")
+
+    name: str = Field(..., description="The name of the function or tool to call.")
+    arguments: Union[Dict[str, Any], str] = Field(
+        default_factory=dict,
+        description="The arguments payload, either as a parsed dictionary or JSON string."
+    )
+
+
+class ToolCall(BaseModel):
+    """
+    Polymorphic ToolCall model compatible with OpenAI, NeMo, and E2E test representations.
+    Supports dual initialization:
+    - Direct: ToolCall(id='...', name='...', arguments={...})
+    - Nested: ToolCall(id='...', type='function', function=FunctionCall(...))
+    """
+    model_config = ConfigDict(extra="ignore")
+
+    id: str = Field(default_factory=lambda: f"call_{uuid.uuid4().hex[:8]}")
+    type: Literal["function"] = "function"
+    name: str = Field(default="", description="Tool function name.")
+    arguments: Dict[str, Any] = Field(default_factory=dict, description="Parsed tool arguments.")
+    function: Optional[FunctionCall] = Field(default=None, description="Nested function call representation.")
+
+    @model_validator(mode="before")
+    @classmethod
+    def _normalize_fields(cls, data: Any) -> Any:
+        if isinstance(data, dict):
+            # If function dict/model is provided, populate name and arguments
+            if "function" in data and data["function"]:
+                func = data["function"]
+                if isinstance(func, dict):
+                    f_name = func.get("name", "")
+                    f_args = func.get("arguments", {})
+                elif hasattr(func, "name"):
+                    f_name = func.name
+                    f_args = getattr(func, "arguments", {})
+                else:
+                    f_name = ""
+                    f_args = {}
+
+                if not data.get("name") and f_name:
+                    data["name"] = f_name
+
+                if not data.get("arguments") and f_args:
+                    if isinstance(f_args, str):
+                        try:
+                            data["arguments"] = json.loads(f_args)
+                        except Exception:
+                            data["arguments"] = {"raw": f_args}
+                    elif isinstance(f_args, dict):
+                        data["arguments"] = f_args
+            # If name/arguments provided at top level, populate function
+            elif data.get("name"):
+                args = data.get("arguments", {})
+                if isinstance(args, str):
+                    try:
+                        args = json.loads(args)
+                        data["arguments"] = args
+                    except Exception:
+                        data["arguments"] = {"raw": args}
+                data["function"] = FunctionCall(
+                    name=data["name"],
+                    arguments=data.get("arguments", {})
+                )
+        return data
+
+    @model_validator(mode="after")
+    def _sync_fields(self) -> "ToolCall":
+        if not self.function and self.name:
+            self.function = FunctionCall(name=self.name, arguments=self.arguments)
+        elif self.function and not self.name:
+            self.name = self.function.name
+            if isinstance(self.function.arguments, dict):
+                self.arguments = self.function.arguments
+            elif isinstance(self.function.arguments, str):
+                try:
+                    self.arguments = json.loads(self.function.arguments)
+                except Exception:
+                    self.arguments = {"raw": self.function.arguments}
+        return self
+
+    def to_openai_dict(self) -> Dict[str, Any]:
+        """Serialize into standard OpenAI function call wire format."""
+        return {
+            "id": self.id,
+            "type": "function",
+            "function": {
+                "name": self.name,
+                "arguments": json.dumps(self.arguments) if isinstance(self.arguments, dict) else str(self.arguments)
+            }
+        }
+
+
+class LLMMessage(BaseModel):
+    """Standard message representation for chat completions."""
+    model_config = ConfigDict(extra="ignore")
+
+    role: Literal["system", "user", "assistant", "tool"] = Field(..., description="Role of the message sender.")
+    content: Optional[str] = Field(default=None, description="Textual content of the message.")
+    tool_calls: Optional[List[ToolCall]] = Field(default=None, description="Tool calls generated by the assistant.")
+    tool_call_id: Optional[str] = Field(default=None, description="Tool call ID for tool role observations.")
+    name: Optional[str] = Field(default=None, description="Optional name (e.g. tool function name).")
+
+    def to_wire_dict(self) -> Dict[str, Any]:
+        """Convert to standard API request wire dictionary."""
+        d: Dict[str, Any] = {"role": self.role}
+        if self.content is not None:
+            d["content"] = self.content
+        if self.tool_calls:
+            d["tool_calls"] = [tc.to_openai_dict() for tc in self.tool_calls]
+        if self.tool_call_id:
+            d["tool_call_id"] = self.tool_call_id
+        if self.name:
+            d["name"] = self.name
+        return d
+
+
+# Convenient alias for ChatMessage
+ChatMessage = LLMMessage
+
+
+class LLMResponse(BaseModel):
+    """Standard unified response envelope for all model providers."""
+    model_config = ConfigDict(extra="ignore")
+
+    content: Optional[str] = Field(default=None, description="Generated assistant message content.")
+    reasoning_content: Optional[str] = Field(
+        default=None,
+        description="Isolated reasoning Chain-of-Thought (e.g. extracted from <think> tokens)."
+    )
+    tool_calls: List[ToolCall] = Field(default_factory=list, description="Extracted tool calls.")
+    finish_reason: Optional[str] = Field(default="stop", description="Completion termination reason.")
+    prompt_tokens: int = Field(default=0, ge=0, description="Tokens in input prompt.")
+    completion_tokens: int = Field(default=0, ge=0, description="Tokens in generated output.")
+    total_tokens: int = Field(default=0, ge=0, description="Total tokens consumed.")
+    latency_ms: float = Field(default=0.0, ge=0.0, description="Wall-clock inference latency in milliseconds.")
+    raw_response: Optional[Dict[str, Any]] = Field(default=None, description="Raw provider JSON payload.")
+
+    @model_validator(mode="after")
+    def _compute_total_tokens(self) -> "LLMResponse":
+        if self.total_tokens == 0 and (self.prompt_tokens > 0 or self.completion_tokens > 0):
+            self.total_tokens = self.prompt_tokens + self.completion_tokens
+        return self
+
+    @property
+    def has_tool_calls(self) -> bool:
+        return len(self.tool_calls) > 0
+
+
+class ModelConfig(BaseModel):
+    """Configuration options for model client instances."""
+    model_config = ConfigDict(extra="ignore")
+
+    model_name: str = Field(default="mock-model", description="Identifier of the LLM model.")
+    api_key: Optional[str] = Field(default=None, description="API authorization key.")
+    base_url: Optional[str] = Field(default=None, description="Endpoint base URL.")
+    temperature: float = Field(default=0.0, ge=0.0, le=2.0, description="Sampling temperature.")
+    max_tokens: int = Field(default=4096, ge=1, description="Maximum completion tokens.")
+    top_p: float = Field(default=1.0, ge=0.0, le=1.0, description="Nucleus sampling top_p.")
+    timeout: float = Field(default=60.0, gt=0.0, description="Request timeout in seconds.")
+    max_retries: int = Field(default=5, ge=0, description="Maximum retry attempts on transient failure.")
+    extra_headers: Dict[str, str] = Field(default_factory=dict, description="Additional HTTP request headers.")
+
+
+# ---------------------------------------------------------------------------
+# Exception Hierarchy
+# ---------------------------------------------------------------------------
+
+class LLMProviderError(Exception):
+    """Base exception for all model provider and inference errors."""
+
+    def __init__(
+        self,
+        message: str,
+        provider: str = "",
+        status_code: Optional[int] = None,
+        raw_body: Optional[str] = None
+    ):
+        super().__init__(message)
+        self.message = message
+        self.provider = provider
+        self.status_code = status_code
+        self.raw_body = raw_body
+
+    def __str__(self) -> str:
+        prov = f"[{self.provider}] " if self.provider else ""
+        code = f" (Status {self.status_code})" if self.status_code else ""
+        return f"{prov}{self.message}{code}"
+
+
+class LLMAuthenticationError(LLMProviderError):
+    """Raised on HTTP 401/403 authorization failures."""
+    pass
+
+
+class LLMRateLimitError(LLMProviderError):
+    """Raised on HTTP 429 rate limit exhaustion."""
+
+    def __init__(
+        self,
+        message: str,
+        retry_after: Optional[float] = None,
+        provider: str = "",
+        status_code: Optional[int] = 429,
+        raw_body: Optional[str] = None
+    ):
+        super().__init__(message, provider=provider, status_code=status_code, raw_body=raw_body)
+        self.retry_after = retry_after
+
+
+class LLMTimeoutError(LLMProviderError):
+    """Raised when an inference request times out."""
+    pass
+
+
+class LLMContextLengthExceededError(LLMProviderError):
+    """Raised when prompt + generation exceeds model context length."""
+    pass
+
+
+class LLMInvalidResponseError(LLMProviderError):
+    """Raised when provider returns malformed or unparseable payload."""
+    pass
+
+
+# ---------------------------------------------------------------------------
+# Abstract Base Client Protocol
+# ---------------------------------------------------------------------------
+
+class BaseLLMClient(ABC):
+    """Abstract polymorphic protocol for model inference clients."""
+
+    def __init__(self, config: Optional[ModelConfig] = None, **kwargs):
+        if config is not None:
+            self.config = config
+        else:
+            self.config = ModelConfig(**kwargs)
+
+    @property
+    def model_name(self) -> str:
+        return self.config.model_name
+
+    @abstractmethod
+    def generate(
+        self,
+        messages: List[LLMMessage],
+        tools: Optional[List[Dict[str, Any]]] = None,
+        temperature: Optional[float] = None,
+        max_tokens: Optional[int] = None,
+        tool_choice: Optional[Union[str, Dict[str, Any]]] = "auto",
+        **kwargs
+    ) -> LLMResponse:
+        """Execute synchronous model completion."""
+        pass
+
+    @abstractmethod
+    async def agenerate(
+        self,
+        messages: List[LLMMessage],
+        tools: Optional[List[Dict[str, Any]]] = None,
+        temperature: Optional[float] = None,
+        max_tokens: Optional[int] = None,
+        tool_choice: Optional[Union[str, Dict[str, Any]]] = "auto",
+        **kwargs
+    ) -> LLMResponse:
+        """Execute asynchronous model completion."""
+        pass
+
+
+# ---------------------------------------------------------------------------
+# Model Registry & Factory
+# ---------------------------------------------------------------------------
+
+class ModelRegistry:
+    """Dynamic registry and factory for model provider client implementations."""
+    _registry: Dict[str, Type[BaseLLMClient]] = {}
+
+    @classmethod
+    def register(cls, provider_name: str, client_cls: Type[BaseLLMClient]) -> None:
+        """Register a provider client class under one or more aliases."""
+        cls._registry[provider_name.lower().strip()] = client_cls
+
+    @classmethod
+    def get_client_class(cls, provider_name: str) -> Type[BaseLLMClient]:
+        """Retrieve registered client class by provider name."""
+        key = provider_name.lower().strip()
+        if key not in cls._registry:
+            available = sorted(list(cls._registry.keys()))
+            raise ValueError(
+                f"Unknown model provider: '{provider_name}'. Available providers: {available}"
+            )
+        return cls._registry[key]
+
+    @classmethod
+    def create_client(cls, provider: str, **kwargs) -> BaseLLMClient:
+        """Instantiate a client for the given provider."""
+        client_cls = cls.get_client_class(provider)
+        return client_cls(**kwargs)
+
+    @classmethod
+    def clear(cls) -> None:
+        """Clear the registry (useful for testing)."""
+        cls._registry.clear()
+
+
+def get_model_client(provider: str, **kwargs) -> BaseLLMClient:
+    """Public helper to instantiate a model client by provider name."""
+    return ModelRegistry.create_client(provider, **kwargs)
