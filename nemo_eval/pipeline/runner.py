@@ -181,8 +181,16 @@ class BenchmarkRunner:
                 # 1. Vanilla execution
                 if run_vanilla:
                     v_record = RunRecord(model_name=model_spec.name, dataset_name=ds_name, mode="vanilla")
+                    existing_trajs, completed_ids = self._load_completed_trajectories(model_spec.name, ds_name, "vanilla")
+                    for et in existing_trajs:
+                        v_record.add_trajectory(et)
+                    if completed_ids:
+                        print(f"  [Resume] Loaded {len(completed_ids)} existing vanilla trajectories for {model_spec.name}/{ds_name}")
+
                     t0 = time.monotonic()
                     for task in tasks:
+                        if task.task_id in completed_ids:
+                            continue
                         try:
                             # Dynamic Mock Injection for Vanilla Mode
                             if hasattr(model_client, "response_queue"):
@@ -219,8 +227,16 @@ class BenchmarkRunner:
                 # 2. Agentic execution
                 if run_agentic:
                     a_record = RunRecord(model_name=model_spec.name, dataset_name=ds_name, mode="agentic")
+                    existing_trajs, completed_ids = self._load_completed_trajectories(model_spec.name, ds_name, "agentic")
+                    for et in existing_trajs:
+                        a_record.add_trajectory(et)
+                    if completed_ids:
+                        print(f"  [Resume] Loaded {len(completed_ids)} existing agentic trajectories for {model_spec.name}/{ds_name}")
+
                     t0 = time.monotonic()
                     for task in tasks:
+                        if task.task_id in completed_ids:
+                            continue
                         try:
                             # Dynamic Mock Injection for Agentic Mode
                             if hasattr(model_client, "response_queue"):
@@ -317,6 +333,23 @@ class BenchmarkRunner:
                     print(f"  [Agentic] Done: Acc={a_record.summary()['accuracy']:.1f}% | PAS={a_record.summary()['avg_pas']:.2f} | Duration={a_record.summary()['avg_duration_ms']:.1f}ms | Energy={a_record.summary()['avg_energy_joules']:.4f}J")
 
         return records
+
+    def _load_completed_trajectories(self, model_name: str, ds_name: str, mode: str) -> Tuple[List[EpisodeTrajectory], Set[str]]:
+        """Load previously completed trajectories for resuming without duplicated work."""
+        spec_file = self.output_dir / f"trajectories_{model_name}_{ds_name}_{mode}.jsonl"
+        trajectories = []
+        completed_ids = set()
+        if spec_file.exists():
+            try:
+                with open(spec_file, "r", encoding="utf-8") as f:
+                    for line in f:
+                        if line.strip():
+                            t = EpisodeTrajectory.model_validate_json(line.strip())
+                            trajectories.append(t)
+                            completed_ids.add(t.task_id)
+            except Exception as e:
+                print(f"  [Resume Warning] Could not parse all lines from {spec_file.name}: {e}")
+        return trajectories, completed_ids
 
     def _stream_trajectory(self, traj: EpisodeTrajectory, model_name: str, ds_name: str, mode: str) -> None:
         """Stream JSONL record to disk."""
