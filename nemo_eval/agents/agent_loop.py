@@ -443,14 +443,17 @@ class AgentLoop:
 
         try:
             data = json.loads(json_str)
-            tool_name = str(data.get("tool_name", "python_repl"))
-            arguments = data.get("arguments", {})
-            if isinstance(arguments, str):
-                try:
-                    arguments = json.loads(arguments)
-                except Exception:
-                    arguments = {"code": arguments}
-        except (json.JSONDecodeError, ValueError):
+            if isinstance(data, dict):
+                tool_name = str(data.get("tool_name", "python_repl"))
+                arguments = data.get("arguments", {})
+                if isinstance(arguments, str):
+                    try:
+                        arguments = json.loads(arguments)
+                    except Exception:
+                        arguments = {"code": arguments}
+            else:
+                raise ValueError("Parsed JSON is not a dictionary")
+        except (json.JSONDecodeError, ValueError, AttributeError):
             # Fallback: select tool from hint and wrap raw content as code
             tool_name = self._orchestrator.select_tool(
                 getattr(sg, "tool_hint", None),

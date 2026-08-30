@@ -118,15 +118,15 @@ class TestDualModeParityAndIsolation:
             planner._parse_sub_goals("5")
 
     def test_agent_loop_scalar_tool_call_attribute_error_vulnerability(self):
-        """Empirical vulnerability test: AgentLoop._parse_tool_call crashes when LLM returns integer/scalar string."""
+        """Verify that AgentLoop._parse_tool_call is robust when LLM returns integer/scalar string."""
         mock_model = DeterministicMockLLMClient()
         loop = AgentLoop(model_client=mock_model)
         sg = SubGoal(id="sg_1", description="Calculate", tool_hint=None, depends_on=[])
 
-        # When LLM outputs '42', json.loads returns int 42.
-        # loop._parse_tool_call calls data.get("tool_name"), raising AttributeError
-        with pytest.raises(AttributeError, match="'int' object has no attribute 'get'"):
-            loop._parse_tool_call("42", sg)
+        # When LLM outputs '42', it should not crash with AttributeError
+        tool_call = loop._parse_tool_call("42", sg)
+        assert tool_call.tool_name is not None
+        assert "code" in tool_call.arguments
 
     def test_execution_order_invariance_and_no_residual_state(self):
         """Verify execution order (Vanilla->Agentic vs Agentic->Vanilla) causes zero cross-talk."""
