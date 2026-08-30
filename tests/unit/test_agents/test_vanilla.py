@@ -35,6 +35,7 @@ class TestVanillaEngine:
         assert mock_model.turn_counter == 1
         assert traj.task_id == "v_task_1"
         assert traj.final_answer == "42"
+        assert getattr(traj, "raw_completion", None) == "Step 1: Simplify.\nFinal answer: \\boxed{42}"
         assert traj.ground_truth_score == 1.0
         assert traj.status == "success"
         assert traj.plan_adherence_score == 1.0

@@ -137,9 +137,9 @@ C:\Projects\MetaCognition/
 |---|------|-------|-------------|--------|
 | M1 | Hardware Resource Telemetry & Value-Only Answer Extractor | `HardwareMonitor`, `StepEvent`/`EpisodeTrajectory` metrics, subprocess sandbox, `ValueExtractor` (LaTeX, regex, numeric) | None | DONE |
 | M2 | Benchmark Dataset Ingestion & Polymorphic Evaluator | `MATHLoader` (50), `PutnamBenchLoader` (50), `LilaLoader` (350), `SympyMathEvaluator`, polymorphic checking, offline fixtures | None | DONE |
-| M3 | Dual-Mode Evaluation Engine | `VanillaEngine` (0-tool CoT), `AgentLoop` dual-mode orchestration, split parity runner | M1, M2 | PLANNED |
-| M4 | Automated Multi-Model Sweeps & Comprehensive Reporting | CLI sweep runner for 7 models, Markdown scorecards, comparison tables, energy/resource leaderboards under `results/` | M1, M2, M3 | PLANNED |
-| M5 | 100% E2E Test Suite Pass & Adversarial Hardening | Pass all Tiers 1-4 E2E tests, execute Tier 5 adversarial hardening, gate validation | M1, M2, M3, M4 | PLANNED |
+| M3 | Dual-Mode Evaluation Engine | `VanillaEngine` (0-tool CoT), `AgentLoop` dual-mode orchestration, split parity runner | M1, M2 | DONE |
+| M4 | Automated Multi-Model Sweeps & Comprehensive Reporting | CLI sweep runner for 7 models, Markdown scorecards, comparison tables, energy/resource leaderboards under `results/` | M1, M2, M3 | DONE |
+| M5 | 100% E2E Test Suite Pass & Adversarial Hardening | Pass all Tiers 1-4 E2E tests, execute Tier 5 adversarial hardening, gate validation | M1, M2, M3, M4 | DONE |
 
 ---
 

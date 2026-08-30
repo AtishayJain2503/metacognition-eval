@@ -138,13 +138,15 @@ class VanillaEngine(BaseEvaluationEngine):
                 TrajectoryState.TERMINAL_FAILURE,
                 input_payload={"error": str(e)},
             )
-            return tracer.close_episode(
+            traj = tracer.close_episode(
                 status="failed",
                 final_answer=None,
                 ground_truth_score=0.0,
                 plan_adherence_score=1.0,
                 tool_accuracy=1.0,
             )
+            object.__setattr__(traj, "raw_completion", "")
+            return traj
 
         # Step 2: Answer extraction
         eval_type = getattr(task, "eval_type", "exact")
@@ -188,4 +190,5 @@ class VanillaEngine(BaseEvaluationEngine):
             tool_accuracy=1.0,
             spea=1.0,
         )
+        object.__setattr__(traj, "raw_completion", raw_completion)
         return traj
