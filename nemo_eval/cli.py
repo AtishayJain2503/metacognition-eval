@@ -57,6 +57,12 @@ def build_parser() -> argparse.ArgumentParser:
     rep_p.add_argument("--output-dir", type=str, default="./results", help="Directory containing run artifacts.")
     rep_p.add_argument("--run-label", type=str, default="Metacognition Benchmark Evaluation")
 
+    # ── audit ────────────────────────────────────────────────────────────
+    aud_p = sub.add_parser("audit", help="Run deep latent trace & reasoning span audit over trajectory files.")
+    aud_p.add_argument("--dir", type=str, default="./results/live_sweep", help="Directory containing trajectory JSONL files.")
+    aud_p.add_argument("--file", type=str, default=None, help="Specific trajectory JSONL file to audit.")
+    aud_p.add_argument("--json", action="store_true", help="Output results as structured JSON.")
+
     # ── validate-config ───────────────────────────────────────────────────
     val_p = sub.add_parser("validate-config", help="Validate a JSON pipeline configuration file.")
     val_p.add_argument("config", type=str, help="Path to config JSON.")
@@ -209,6 +215,38 @@ def cmd_report(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_audit(args: argparse.Namespace) -> int:
+    from nemo_eval.eval.trace_audit import TrajectoryTraceAuditor
+
+    auditor = TrajectoryTraceAuditor()
+    if args.file:
+        res = auditor.audit_file(args.file)
+        results = [res] if res else []
+    else:
+        results = auditor.audit_directory(args.dir)
+
+    if not results:
+        print(f"[CLI] No valid trajectory files found to audit.", file=sys.stderr)
+        return 1
+
+    if args.json:
+        print(json.dumps(results, indent=2))
+    else:
+        print("\n=========================================================================================")
+        print("                         DEEP LATENT TRACE AUDIT SCORECARD                               ")
+        print("=========================================================================================")
+        print(f"{'Model':<18} {'Dataset':<10} {'Mode':<10} {'Tasks':<6} {'Raw Acc':<10} {'Tool/Latent Acc':<16} {'Timeouts':<10} {'Avg Joules':<12}")
+        print("-" * 89)
+        for r in results:
+            print(
+                f"{r['model']:<18} {r['dataset']:<10} {r['mode']:<10} {r['total_tasks']:<6} "
+                f"{r['raw_accuracy']:<10} {r['latent_proof_accuracy']:<16} {r['timeouts']:<10} {r['avg_energy_joules']:<12.1f}"
+            )
+        print("=========================================================================================\n")
+
+    return 0
+
+
 def cmd_validate_config(args: argparse.Namespace) -> int:
     try:
         config = PipelineConfig.from_json(args.config)
@@ -233,6 +271,8 @@ def main() -> None:
         sys.exit(cmd_run(args))
     elif args.command == "report":
         sys.exit(cmd_report(args))
+    elif args.command == "audit":
+        sys.exit(cmd_audit(args))
     elif args.command == "validate-config":
         sys.exit(cmd_validate_config(args))
     else:
