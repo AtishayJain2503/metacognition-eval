@@ -74,23 +74,23 @@ We recorded real-time hardware telemetry throughout all runs: **Reasoning Accura
 ## 3. Core Scientific Contributions & Pareto Insights (ICML Findings)
 
 ```mermaid
-quadrantChart
-    title Accuracy vs. Energy Trade-off
-    x-axis Low Energy Consumption --> High Energy Consumption
-    y-axis Low Task Accuracy --> High Task Accuracy
-    quadrant-1 High Accuracy, High Energy (Agentic Olympiad)
-    quadrant-2 High Accuracy, Low Energy (Vanilla Math SLMs)
-    quadrant-3 Low Accuracy, Low Energy
-    quadrant-4 Low Accuracy, High Energy
-    "Qwen2.5-Math-1.5B (Vanilla MATH 98%)": [0.15, 0.98]
-    "Llama3.2-3B (Vanilla MATH 96%)": [0.18, 0.96]
-    "Qwen2.5-Math-7B (Vanilla MATH 95%)": [0.35, 0.95]
-    "Qwen2.5-Math-7B (Agentic Lila 100%)": [0.65, 1.00]
-    "Llama3.2-3B (Agentic Putnam 60%)": [0.38, 0.60]
-    "DeepSeek-R1-1.5B (Agentic Lila 88%)": [0.42, 0.88]
-    "DeepSeek-R1-7B (Agentic Lila 96%)": [0.62, 0.96]
-    "Qwen3-4B-Thinking (Agentic Lila 82%)": [0.45, 0.82]
-    "Phi4-mini-reasoning (Vanilla MATH 72%)": [0.36, 0.72]
+graph TD
+    subgraph Optimal_Pareto_Frontier["Optimal Pareto Frontier (Highest Accuracy, Lowest Energy)"]
+        O1["Qwen2.5-Math-1.5B (MATH Vanilla): 98.0% Accuracy @ 206.1 Joules/Task"]
+        O2["Llama3.2-3B (MATH Vanilla): 96.0% Accuracy @ 227.0 Joules/Task"]
+        O3["Llama3.2-3B (Lila Agentic): 86.0% Accuracy @ 169.5 Joules/Task"]
+        O4["Llama3.2-3B (Putnam Agentic): 60.0% Accuracy @ 657.2 Joules/Task"]
+    end
+    subgraph High_Accuracy_Dense_Compute["High-Accuracy Dense Compute (Higher Energy Footprint)"]
+        H1["Qwen2.5-Math-7B (Lila Agentic): 100.0% Accuracy @ 3,011.9 Joules/Task"]
+        H2["Qwen2.5-Math-7B (MATH Vanilla): 95.0% Accuracy @ 938.9 Joules/Task"]
+        H3["DeepSeek-R1-7B (Lila Agentic): 96.0% Accuracy @ 2,728.0 Joules/Task"]
+        H4["DeepSeek-R1-1.5B (Lila Agentic): 88.0% Accuracy @ 844.0 Joules/Task"]
+    end
+    subgraph Mid_Range_Reasoners["Intermediate Reasoning Frontier"]
+        M1["Qwen3-4B-Thinking (Lila Agentic): 82.0% Accuracy @ 1,478.8 Joules/Task"]
+        M2["Phi4-mini-reasoning (MATH Vanilla): 72.0% Accuracy @ 1,096.9 Joules/Task"]
+    end
 ```
 
 ### Finding 1: The "Agent Tax" on Pure Analytical Mathematics

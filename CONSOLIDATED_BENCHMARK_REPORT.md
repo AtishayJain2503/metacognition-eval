@@ -47,20 +47,20 @@ For each problem, we captured:
 
 ```mermaid
 graph LR
-    A[Task Prompt] --> B{Execution Paradigm}
-    B -->|Vanilla Mode| C[Zero-Shot CoT / `<think>`]
-    C --> D[Single-Turn Generation]
-    D --> E[ValueExtractor & EvalEngine]
+    A["Task Prompt"] --> B{"Execution Paradigm"}
+    B -->|"Vanilla Mode"| C["Zero-Shot CoT / Reasoning Spans"]
+    C --> D["Single-Turn Generation"]
+    D --> E["ValueExtractor & EvalEngine"]
     
-    B -->|Agentic Mode| F[9-State FSM Loop]
-    F --> G[DAG Sub-Goal Planning]
-    G --> H[Action Selection & JSON Validation]
-    H --> I[Hermetic Python REPL Execution]
-    I --> J[Observation & Self-Correction]
-    J --> K[Final Synthesis & Answer Extraction]
+    B -->|"Agentic Mode"| F["9-State FSM Loop"]
+    F --> G["DAG Sub-Goal Planning"]
+    G --> H["Action Selection & JSON Validation"]
+    H --> I["Hermetic Python REPL Execution"]
+    I --> J["Observation & Self-Correction"]
+    J --> K["Final Synthesis & Answer Extraction"]
     K --> E
     
-    E --> L[Real-Time NVML Energy & Accuracy Scorecard]
+    E --> L["Real-Time NVML Energy & Accuracy Scorecard"]
 ```
 
 ---
@@ -185,15 +185,15 @@ When tasks involve multi-step arithmetic, scientific equations, or high-degree p
 
 ```mermaid
 graph TD
-    subgraph AllenAI Lila Benchmark
-        L1["DeepSeek-R1-1.5B: 6.0% → 88.0% (+82.0% Gain)"]
-        L2["Qwen3-4B-Thinking: 30.0% → 82.0% (+52.0% Gain)"]
-        L3["Llama3.2-3B: 40.0% → 86.0% (+46.0% Gain)"]
-        L4["DeepSeek-R1-7B: 52.0% → 96.0% (+44.0% Gain)"]
+    subgraph Lila_Benchmark["AllenAI Lila Benchmark: Accuracy Surge in Agentic Mode"]
+        L1["DeepSeek-R1-1.5B: 6.0% (Vanilla) --> 88.0% (Agentic) [+82.0% Gain]"]
+        L2["Qwen3-4B-Thinking: 30.0% (Vanilla) --> 82.0% (Agentic) [+52.0% Gain]"]
+        L3["Llama3.2-3B: 40.0% (Vanilla) --> 86.0% (Agentic) [+46.0% Gain]"]
+        L4["DeepSeek-R1-7B: 52.0% (Vanilla) --> 96.0% (Agentic) [+44.0% Gain]"]
     end
-    subgraph PutnamBench Olympiad Benchmark
-        P1["Qwen3-4B-Thinking: 0.0% → 24.0% (+24.0% Gain)"]
-        P2["Llama3.2-3B: 44.0% → 60.0% (+16.0% Gain)"]
+    subgraph Putnam_Benchmark["PutnamBench Olympiad: Accuracy Surge in Agentic Mode"]
+        P1["Qwen3-4B-Thinking: 0.0% (Vanilla) --> 24.0% (Agentic) [+24.0% Gain]"]
+        P2["Llama3.2-3B: 44.0% (Vanilla) --> 60.0% (Agentic) [+16.0% Gain]"]
     end
 ```
 
@@ -204,24 +204,23 @@ graph TD
 ### 4.3 The Pareto Efficiency Frontier
 
 ```mermaid
-quadrantChart
-    title Accuracy vs. Energy Trade-off
-    x-axis Low Energy Consumption (Joules) --> High Energy Consumption (Joules)
-    y-axis Low Task Accuracy (%) --> High Task Accuracy (%)
-    quadrant-1 High Accuracy, High Energy (Agentic Olympiad)
-    quadrant-2 Optimal Pareto Frontier (High Acc, Low Energy)
-    quadrant-3 Low Accuracy, Low Energy
-    quadrant-4 Inefficient (Low Acc, High Energy)
-    "Qwen2.5-Math-1.5B (MATH Vanilla 98%, 206J)": [0.12, 0.98]
-    "Llama3.2-3B (MATH Vanilla 96%, 227J)": [0.14, 0.96]
-    "Qwen2.5-Math-7B (MATH Vanilla 95%, 938J)": [0.28, 0.95]
-    "Qwen2.5-Math-7B (Lila Agentic 100%, 3011J)": [0.65, 1.00]
-    "Llama3.2-3B (Lila Agentic 86%, 169J)": [0.11, 0.86]
-    "Llama3.2-3B (Putnam Agentic 60%, 657J)": [0.25, 0.60]
-    "DeepSeek-R1-1.5B (Lila Agentic 88%, 844J)": [0.30, 0.88]
-    "DeepSeek-R1-7B (Lila Agentic 96%, 2728J)": [0.60, 0.96]
-    "Qwen3-4B-Thinking (Lila Agentic 82%, 1478J)": [0.42, 0.82]
-    "Phi4-mini-reasoning (MATH Vanilla 72%, 1096J)": [0.32, 0.72]
+graph TD
+    subgraph Optimal_Pareto_Frontier["Optimal Pareto Frontier (Highest Accuracy, Lowest Energy)"]
+        O1["Qwen2.5-Math-1.5B (MATH Vanilla): 98.0% Accuracy @ 206.1 Joules/Task"]
+        O2["Llama3.2-3B (MATH Vanilla): 96.0% Accuracy @ 227.0 Joules/Task"]
+        O3["Llama3.2-3B (Lila Agentic): 86.0% Accuracy @ 169.5 Joules/Task"]
+        O4["Llama3.2-3B (Putnam Agentic): 60.0% Accuracy @ 657.2 Joules/Task"]
+    end
+    subgraph High_Accuracy_Dense_Compute["High-Accuracy Dense Compute (Higher Energy Footprint)"]
+        H1["Qwen2.5-Math-7B (Lila Agentic): 100.0% Accuracy @ 3,011.9 Joules/Task"]
+        H2["Qwen2.5-Math-7B (MATH Vanilla): 95.0% Accuracy @ 938.9 Joules/Task"]
+        H3["DeepSeek-R1-7B (Lila Agentic): 96.0% Accuracy @ 2,728.0 Joules/Task"]
+        H4["DeepSeek-R1-1.5B (Lila Agentic): 88.0% Accuracy @ 844.0 Joules/Task"]
+    end
+    subgraph Mid_Range_Reasoners["Intermediate Reasoning Frontier"]
+        M1["Qwen3-4B-Thinking (Lila Agentic): 82.0% Accuracy @ 1,478.8 Joules/Task"]
+        M2["Phi4-mini-reasoning (MATH Vanilla): 72.0% Accuracy @ 1,096.9 Joules/Task"]
+    end
 ```
 
 **Pareto Champions**:
