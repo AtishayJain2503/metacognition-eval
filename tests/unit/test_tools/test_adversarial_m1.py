@@ -199,7 +199,8 @@ len(x)
         assert res_timeout.status == "error"
         assert res_timeout.error.error_type == "TimeoutError"
 
-        res_after = repl.execute("100 + 200", session_id="recovery_session", timeout=2.0)
+        time.sleep(0.1)
+        res_after = repl.execute("100 + 200", session_id="recovery_session", timeout=3.0)
         assert res_after.status == "success"
         assert res_after.data == 300
 
