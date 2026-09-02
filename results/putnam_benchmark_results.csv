@@ -1,0 +1,707 @@
+model,mode,task_id,ground_truth_score,is_correct,extracted_answer,duration_ms,energy_joules,peak_ram_mb,gpu_vram_mb,status
+DeepSeek-R1-1.5B,agentic,putnam_2000_A1_001,0.0,False,Execution completed with no output,12812.0,795.9239,194.19,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2001_B2_002,0.0,False,Execution completed with no output,12703.0,809.4699,193.03,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2002_A3_003,0.0,False,,15079.0,1161.6402,79.36,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2003_B4_004,0.0,False,Execution completed with no output,12078.0,788.5938,173.46,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2004_A5_005,0.0,False,Execution completed with no output,12094.0,815.5733,173.35,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2005_B6_006,0.0,False,Execution completed with no output,12156.0,808.7609,161.16,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2006_A1_007,0.0,False,,21796.0,1650.9587,70.04,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2007_B2_008,0.0,False,Execution completed with no output,12047.0,794.5389,162.18,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2008_A3_009,0.0,False,,21156.0,1602.8835,55.23,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2009_B4_010,0.0,False,,21578.0,1264.015,155.47,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2010_A5_011,0.0,False,Execution completed with no output,11844.0,827.7367,153.85,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2011_B6_012,0.0,False,Execution completed with no output,11953.0,788.9979,156.23,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2012_A1_013,0.0,False,Execution completed with no output,11438.0,750.0437,151.89,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2013_B2_014,0.0,False,,28391.0,1834.2144,152.9,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2014_A3_015,0.0,False,Execution completed with no output,12172.0,831.5515,152.43,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2015_B4_016,0.0,False,Execution completed with no output,13313.0,829.2249,150.08,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2016_A5_017,0.0,False,,17047.0,1318.3428,59.39,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2017_B6_018,0.0,False,Execution completed with no output,13953.0,819.1099,149.65,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2018_A1_019,0.0,False,Execution completed with no output,12172.0,821.2411,149.5,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2019_B2_020,0.0,False,,17531.0,1359.7957,57.51,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2020_A3_021,0.0,False,Execution completed with no output,12141.0,814.0678,151.56,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2021_B4_022,0.0,False,Execution completed with no output,12375.0,800.3715,150.31,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2022_A5_023,0.0,False,Execution completed with no output,15609.0,1087.7478,149.95,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2023_B6_024,0.0,False,Execution completed with no output,9766.0,673.9495,149.67,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2000_A1_025,0.0,False,Execution completed with no output,11922.0,804.6956,152.07,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2001_B2_026,0.0,False,Execution completed with no output,11766.0,801.8643,150.56,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2002_A3_027,0.0,False,Execution completed with no output,11797.0,800.2382,148.7,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2003_B4_028,0.0,False,Execution completed with no output,11859.0,828.1194,148.97,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2004_A5_029,0.0,False,Execution completed with no output,12000.0,780.6253,152.02,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2005_B6_030,0.0,False,Execution completed with no output,12047.0,811.7834,148.37,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2006_A1_031,1.0,True,63,11469.0,756.819,148.84,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2007_B2_032,0.0,False,Execution completed with no output,11968.0,811.5675,152.47,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2008_A3_033,0.0,False,Execution completed with no output,11844.0,839.4556,149.3,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2009_B4_034,0.0,False,Execution completed with no output,12235.0,831.6586,148.98,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2010_A5_035,1.0,True,0,22890.0,1479.8555,150.68,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2011_B6_036,0.0,False,Execution completed with no output,11891.0,852.0116,152.62,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2012_A1_037,0.0,False,Execution completed with no output,11922.0,810.8972,152.26,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2013_B2_038,0.0,False,,21360.0,1415.8929,153.19,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2014_A3_039,0.0,False,Execution completed with no output,11984.0,803.3336,153.02,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2015_B4_040,0.0,False,Execution completed with no output,12172.0,825.6082,149.98,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2016_A5_041,0.0,False,Execution completed with no output,20204.0,1314.9511,150.99,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2017_B6_042,0.0,False,,20781.0,1622.2017,59.04,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2018_A1_043,0.0,False,Execution completed with no output,12265.0,803.4303,149.89,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2019_B2_044,0.0,False,Execution completed with no output,11860.0,807.6575,150.0,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2020_A3_045,0.0,False,Execution completed with no output,12782.0,860.1093,150.09,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2021_B4_046,0.0,False,Execution completed with no output,17515.0,1229.47,151.25,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2022_A5_047,0.0,False,Execution completed with no output,11765.0,831.8374,149.83,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2023_B6_048,0.0,False,,18578.0,1423.7458,59.13,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2000_A1_049,0.0,False,,21078.0,1602.9589,60.77,2130.0,success
+DeepSeek-R1-1.5B,agentic,putnam_2001_B2_050,0.0,False,Execution completed with no output,11984.0,777.8021,150.11,2130.0,success
+DeepSeek-R1-1.5B,vanilla,putnam_2000_A1_001,0.0,False,,6828.0,506.5747,153.45,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2001_B2_002,0.0,False,,6937.0,513.9706,133.16,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2002_A3_003,1.0,True,7,6735.0,503.4997,131.36,2130.0,success
+DeepSeek-R1-1.5B,vanilla,putnam_2003_B4_004,0.0,False,,6937.0,516.9868,107.19,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2004_A5_005,0.0,False,,6781.0,497.0582,107.19,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2005_B6_006,0.0,False,,6704.0,491.7385,107.21,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2006_A1_007,0.0,False,,6829.0,510.559,107.21,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2007_B2_008,0.0,False,,6765.0,505.023,75.3,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2008_A3_009,0.0,False,,6703.0,485.5736,99.84,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2009_B4_010,0.0,False,,6672.0,501.1627,99.87,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2010_A5_011,0.0,False,,6656.0,485.3357,99.88,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2011_B6_012,0.0,False,,6672.0,481.6455,99.62,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2012_A1_013,0.0,False,,6750.0,487.9224,85.13,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2013_B2_014,0.0,False,,6890.0,502.8069,82.04,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2014_A3_015,0.0,False,,7187.0,521.1376,99.56,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2015_B4_016,0.0,False,,7047.0,512.1283,75.42,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2016_A5_017,0.0,False,2,6734.0,493.6814,100.16,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2017_B6_018,0.0,False,,6719.0,488.9281,100.19,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2018_A1_019,0.0,False,,6657.0,487.2827,75.6,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2019_B2_020,0.0,False,,6657.0,482.1915,81.43,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2020_A3_021,0.0,False,22,6719.0,498.3329,76.54,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2021_B4_022,0.0,False,,6734.0,482.9733,76.56,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2022_A5_023,0.0,False,,6656.0,486.5883,101.07,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2023_B6_024,0.0,False,600,6657.0,493.2449,76.64,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2000_A1_025,0.0,False,,6625.0,488.9691,102.68,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2001_B2_026,0.0,False,,6672.0,496.4566,100.88,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2002_A3_027,0.0,False,,6641.0,491.1803,101.29,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2003_B4_028,0.0,False,29,6688.0,492.6726,103.18,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2004_A5_029,0.0,False,,6719.0,487.0555,77.14,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2005_B6_030,0.0,False,,6735.0,504.6343,101.66,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2006_A1_031,0.0,False,,6672.0,495.8181,77.18,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2007_B2_032,0.0,False,,6672.0,505.9549,77.2,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2008_A3_033,0.0,False,,6719.0,481.3388,99.39,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2009_B4_034,0.0,False,,6875.0,492.5597,101.41,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2010_A5_035,0.0,False,,6688.0,488.6233,77.25,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2011_B6_036,0.0,False,,6625.0,480.9741,77.29,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2012_A1_037,0.0,False,,6734.0,487.8798,84.54,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2013_B2_038,0.0,False,2,6672.0,506.3007,103.41,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2014_A3_039,0.0,False,,6687.0,495.0007,77.39,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2015_B4_040,0.0,False,,6750.0,497.3944,84.78,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2016_A5_041,0.0,False,,6719.0,491.5215,103.46,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2017_B6_042,0.0,False,43,6687.0,490.919,77.62,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2018_A1_043,0.0,False,,6641.0,484.8106,103.67,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2019_B2_044,0.0,False,,6844.0,492.1642,102.23,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2020_A3_045,0.0,False,2070,6875.0,497.1329,77.67,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2021_B4_046,0.0,False,,6953.0,508.4785,102.32,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2022_A5_047,0.0,False,,6641.0,489.7146,102.18,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2023_B6_048,0.0,False,,6859.0,491.0306,101.89,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2000_A1_049,0.0,False,,6812.0,502.1957,102.22,2130.0,failed
+DeepSeek-R1-1.5B,vanilla,putnam_2001_B2_050,0.0,False,,6750.0,490.5398,77.73,2130.0,failed
+DeepSeek-R1-7B,agentic,putnam_2000_A1_001,0.0,False,Execution completed with no output,34016.0,2488.7026,146.71,5205.0,success
+DeepSeek-R1-7B,agentic,putnam_2001_B2_002,0.0,False,,70641.0,5363.0526,58.15,5212.0,success
+DeepSeek-R1-7B,agentic,putnam_2002_A3_003,0.0,False,,51157.0,3847.4406,58.57,5210.0,success
+DeepSeek-R1-7B,agentic,putnam_2003_B4_004,0.0,False,Execution completed with no output,52390.0,3895.9871,147.79,5201.0,success
+DeepSeek-R1-7B,agentic,putnam_2004_A5_005,0.0,False,Execution completed with no output,33594.0,2506.0022,146.77,5201.0,success
+DeepSeek-R1-7B,agentic,putnam_2005_B6_006,0.0,False,,55750.0,4269.132,54.49,5201.0,success
+DeepSeek-R1-7B,agentic,putnam_2006_A1_007,0.0,False,,54156.0,4145.1218,56.14,5207.0,success
+DeepSeek-R1-7B,agentic,putnam_2007_B2_008,0.0,False,Execution completed with no output,33781.0,2505.209,147.3,5205.0,success
+DeepSeek-R1-7B,agentic,putnam_2008_A3_009,0.0,False,,65234.0,5012.3517,54.87,5205.0,success
+DeepSeek-R1-7B,agentic,putnam_2009_B4_010,0.0,False,,51515.0,3936.0017,55.2,5218.0,success
+DeepSeek-R1-7B,agentic,putnam_2010_A5_011,0.0,False,Execution completed with no output,34422.0,2510.1139,147.91,5211.0,success
+DeepSeek-R1-7B,agentic,putnam_2011_B6_012,0.0,False,Execution completed with no output,33656.0,2493.1089,149.02,5211.0,success
+DeepSeek-R1-7B,agentic,putnam_2012_A1_013,0.0,False,Execution completed with no output,50734.0,3734.4265,146.55,5211.0,success
+DeepSeek-R1-7B,agentic,putnam_2013_B2_014,0.0,False,Execution completed with no output,76875.0,5802.0955,147.36,5211.0,success
+DeepSeek-R1-7B,agentic,putnam_2014_A3_015,0.0,False,Execution completed with no output,33812.0,2520.1111,147.47,5211.0,success
+DeepSeek-R1-7B,agentic,putnam_2015_B4_016,0.0,False,Execution completed with no output,34265.0,2522.068,147.11,5211.0,success
+DeepSeek-R1-7B,agentic,putnam_2016_A5_017,1.0,True,35,44203.0,3411.4238,56.8,5217.0,success
+DeepSeek-R1-7B,agentic,putnam_2017_B6_018,0.0,False,Execution completed with no output,34672.0,2514.7302,149.18,5214.0,success
+DeepSeek-R1-7B,agentic,putnam_2018_A1_019,0.0,False,Execution completed with no output,34687.0,2521.3785,149.39,5220.0,success
+DeepSeek-R1-7B,agentic,putnam_2019_B2_020,0.0,False,Execution completed with no output,33859.0,2513.9579,149.45,5219.0,success
+DeepSeek-R1-7B,agentic,putnam_2020_A3_021,1.0,True,0.001976284584980237,24719.0,1752.5419,149.52,5219.0,success
+DeepSeek-R1-7B,agentic,putnam_2021_B4_022,0.0,False,Execution completed with no output,33546.0,2578.3309,146.69,5219.0,success
+DeepSeek-R1-7B,agentic,putnam_2022_A5_023,0.0,False,Execution completed with no output,55125.0,4152.9649,147.92,5219.0,success
+DeepSeek-R1-7B,agentic,putnam_2023_B6_024,0.0,False,,46625.0,3589.8862,57.28,5219.0,success
+DeepSeek-R1-7B,agentic,putnam_2000_A1_025,0.0,False,Execution completed with no output,34515.0,2519.534,147.8,5219.0,success
+DeepSeek-R1-7B,agentic,putnam_2001_B2_026,0.0,False,Execution completed with no output,34281.0,2511.8671,146.55,5219.0,success
+DeepSeek-R1-7B,agentic,putnam_2002_A3_027,0.0,False,,59890.0,4640.6503,31.11,5219.0,success
+DeepSeek-R1-7B,agentic,putnam_2003_B4_028,0.0,False,Execution completed with no output,49031.0,3643.551,148.09,5219.0,success
+DeepSeek-R1-7B,agentic,putnam_2004_A5_029,0.0,False,Execution completed with no output,34562.0,2525.0516,148.65,5219.0,success
+DeepSeek-R1-7B,agentic,putnam_2005_B6_030,0.0,False,,64593.0,4995.0343,57.51,5219.0,success
+DeepSeek-R1-7B,agentic,putnam_2006_A1_031,0.0,False,,52281.0,3980.2808,57.57,5219.0,success
+DeepSeek-R1-7B,agentic,putnam_2007_B2_032,0.0,False,Execution completed with no output,34313.0,2508.8175,148.18,5219.0,success
+DeepSeek-R1-7B,agentic,putnam_2008_A3_033,0.0,False,Execution completed with no output,33812.0,2522.2872,148.2,5219.0,success
+DeepSeek-R1-7B,agentic,putnam_2009_B4_034,0.0,False,Execution completed with no output,35454.0,2540.79,147.77,5219.0,success
+DeepSeek-R1-7B,agentic,putnam_2010_A5_035,0.0,False,,74313.0,5766.0834,57.69,5219.0,success
+DeepSeek-R1-7B,agentic,putnam_2011_B6_036,0.0,False,Execution completed with no output,34406.0,2522.4319,147.13,5219.0,success
+DeepSeek-R1-7B,agentic,putnam_2012_A1_037,1.0,True,2,52531.0,3966.4999,148.88,5219.0,success
+DeepSeek-R1-7B,agentic,putnam_2013_B2_038,0.0,False,,48672.0,3771.2988,56.49,5226.0,success
+DeepSeek-R1-7B,agentic,putnam_2014_A3_039,0.0,False,Execution completed with no output,34969.0,2519.059,150.26,5225.0,success
+DeepSeek-R1-7B,agentic,putnam_2015_B4_040,0.0,False,Execution completed with no output,36766.0,2541.7529,147.84,5225.0,success
+DeepSeek-R1-7B,agentic,putnam_2016_A5_041,1.0,True,903,56594.0,4210.5932,148.91,5225.0,success
+DeepSeek-R1-7B,agentic,putnam_2017_B6_042,0.0,False,Execution completed with no output,54000.0,4022.3277,148.84,5225.0,success
+DeepSeek-R1-7B,agentic,putnam_2018_A1_043,0.0,False,Execution completed with no output,34578.0,2529.1419,148.89,5225.0,success
+DeepSeek-R1-7B,agentic,putnam_2019_B2_044,0.0,False,Execution completed with no output,34813.0,2549.4037,149.41,5225.0,success
+DeepSeek-R1-7B,agentic,putnam_2020_A3_045,0.0,False,,49437.0,3806.9745,56.77,5225.0,success
+DeepSeek-R1-7B,agentic,putnam_2021_B4_046,0.0,False,Execution completed with no output,35016.0,2533.7877,150.62,5225.0,success
+DeepSeek-R1-7B,agentic,putnam_2022_A5_047,0.0,False,Execution completed with no output,35453.0,2565.3874,148.18,5225.0,success
+DeepSeek-R1-7B,agentic,putnam_2023_B6_048,0.0,False,,53391.0,4042.2283,57.01,5225.0,success
+DeepSeek-R1-7B,agentic,putnam_2000_A1_049,0.0,False,,64250.0,4801.9272,56.7,5225.0,success
+DeepSeek-R1-7B,agentic,putnam_2001_B2_050,0.0,False,Execution completed with no output,36313.0,2493.5359,148.98,5225.0,success
+DeepSeek-R1-7B,vanilla,putnam_2000_A1_001,0.0,False,,21515.0,1719.5761,87.93,5203.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2001_B2_002,0.0,False,,21468.0,1689.2657,81.6,5203.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2002_A3_003,1.0,True,7,18047.0,1424.8631,88.08,5203.0,success
+DeepSeek-R1-7B,vanilla,putnam_2003_B4_004,0.0,False,,21437.0,1688.6051,63.23,5203.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2004_A5_005,0.0,False,,21469.0,1672.4409,63.31,5203.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2005_B6_006,0.0,False,,21563.0,1666.0255,88.06,5207.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2006_A1_007,0.0,False,8,21609.0,1667.215,63.35,5214.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2007_B2_008,0.0,False,,21469.0,1655.3323,63.37,5214.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2008_A3_009,0.0,False,,21375.0,1665.0618,63.39,5214.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2009_B4_010,1.0,True,21,19625.0,1516.2374,88.15,5213.0,success
+DeepSeek-R1-7B,vanilla,putnam_2010_A5_011,0.0,False,,21469.0,1674.1662,84.46,5213.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2011_B6_012,0.0,False,,21750.0,1648.308,89.68,5213.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2012_A1_013,0.0,False,15,21672.0,1658.7714,63.43,5213.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2013_B2_014,0.0,False,1,21500.0,1645.2439,87.91,5209.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2014_A3_015,0.0,False,,21484.0,1655.7633,63.53,5209.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2015_B4_016,0.0,False,,21546.0,1664.6492,89.84,5209.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2016_A5_017,1.0,True,35,16515.0,1280.244,89.81,5214.0,success
+DeepSeek-R1-7B,vanilla,putnam_2017_B6_018,0.0,False,,21640.0,1657.55,63.55,5214.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2018_A1_019,0.0,False,,21547.0,1671.3572,87.99,5214.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2019_B2_020,0.0,False,,21453.0,1647.2759,89.8,5214.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2020_A3_021,0.0,False,12,21453.0,1635.6148,68.7,5214.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2021_B4_022,0.0,False,,21469.0,1659.161,89.91,5214.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2022_A5_023,0.0,False,,21468.0,1638.0459,88.48,5214.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2023_B6_024,1.0,True,49,18312.0,1398.1986,71.33,5214.0,success
+DeepSeek-R1-7B,vanilla,putnam_2000_A1_025,0.0,False,,21641.0,1663.8588,71.43,5205.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2001_B2_026,0.0,False,,21406.0,1651.5941,46.61,5205.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2002_A3_027,0.0,False,,21453.0,1636.0732,71.07,5205.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2003_B4_028,0.0,False,29,21484.0,1655.9668,72.95,5205.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2004_A5_029,0.0,False,,21593.0,1650.9885,46.69,5205.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2005_B6_030,0.0,False,,21469.0,1654.467,46.71,5205.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2006_A1_031,1.0,True,63,20594.0,1583.4269,46.72,5205.0,success
+DeepSeek-R1-7B,vanilla,putnam_2007_B2_032,0.0,False,,21453.0,1641.6416,46.75,5205.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2008_A3_033,0.0,False,,21578.0,1654.0765,46.77,5205.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2009_B4_034,0.0,False,,21562.0,1658.4865,46.76,5205.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2010_A5_035,0.0,False,1,21516.0,1650.8361,73.09,5205.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2011_B6_036,0.0,False,,21438.0,1653.8535,71.63,5205.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2012_A1_037,0.0,False,,21453.0,1634.3812,71.29,5205.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2013_B2_038,1.0,True,77,18157.0,1392.3759,54.15,5205.0,success
+DeepSeek-R1-7B,vanilla,putnam_2014_A3_039,0.0,False,,21406.0,1651.9586,46.83,5205.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2015_B4_040,0.0,False,,21406.0,1645.3245,71.71,5205.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2016_A5_041,0.0,False,,21578.0,1637.4123,71.6,5205.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2017_B6_042,0.0,False,,21485.0,1649.1295,71.3,5205.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2018_A1_043,0.0,False,,21453.0,1648.2331,46.87,5205.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2019_B2_044,0.0,False,,21594.0,1669.9685,46.88,5205.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2020_A3_045,1.0,True,91,19125.0,1469.8944,71.36,5205.0,success
+DeepSeek-R1-7B,vanilla,putnam_2021_B4_046,0.0,False,,22140.0,1661.8984,49.88,5205.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2022_A5_047,0.0,False,,22031.0,1634.3416,51.76,5205.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2023_B6_048,0.0,False,,22172.0,1617.0741,25.75,5205.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2000_A1_049,0.0,False,50,21750.0,1580.1571,55.17,5205.0,failed
+DeepSeek-R1-7B,vanilla,putnam_2001_B2_050,0.0,False,,21328.0,1574.4586,46.53,5205.0,failed
+Llama3.2-3B,agentic,putnam_2000_A1_001,0.0,False,\infty,7735.0,480.6648,161.27,3454.0,success
+Llama3.2-3B,agentic,putnam_2001_B2_002,1.0,True,2,8984.0,677.9761,68.34,3454.0,success
+Llama3.2-3B,agentic,putnam_2002_A3_003,1.0,True,7,5031.0,262.5338,160.73,3454.0,success
+Llama3.2-3B,agentic,putnam_2003_B4_004,0.0,False,40,6360.0,399.566,160.44,3454.0,success
+Llama3.2-3B,agentic,putnam_2004_A5_005,0.0,False,8! \cdot 7^7,15547.0,1225.1352,70.02,3454.0,success
+Llama3.2-3B,agentic,putnam_2005_B6_006,1.0,True,28,5750.0,342.4702,161.07,3454.0,success
+Llama3.2-3B,agentic,putnam_2006_A1_007,0.0,False,1/28,9141.0,690.4665,68.62,3454.0,success
+Llama3.2-3B,agentic,putnam_2007_B2_008,0.0,False,0,8219.0,564.7513,162.38,3454.0,success
+Llama3.2-3B,agentic,putnam_2008_A3_009,1.0,True,2,5485.0,312.6443,162.87,3454.0,success
+Llama3.2-3B,agentic,putnam_2009_B4_010,1.0,True,21,5750.0,334.5212,160.83,3454.0,success
+Llama3.2-3B,agentic,putnam_2010_A5_011,0.0,False,33,8906.0,597.7454,161.04,3454.0,success
+Llama3.2-3B,agentic,putnam_2011_B6_012,0.0,False,15,17094.0,1315.1065,69.07,3454.0,success
+Llama3.2-3B,agentic,putnam_2012_A1_013,1.0,True,105,5343.0,314.4418,162.71,3454.0,success
+Llama3.2-3B,agentic,putnam_2013_B2_014,1.0,True,0,7937.0,503.5795,161.15,3454.0,success
+Llama3.2-3B,agentic,putnam_2014_A3_015,0.0,False,8,9672.0,662.5176,162.46,3454.0,success
+Llama3.2-3B,agentic,putnam_2015_B4_016,1.0,True,2,7250.0,443.1822,159.95,3454.0,success
+Llama3.2-3B,agentic,putnam_2016_A5_017,1.0,True,35,5297.0,312.3489,160.91,3454.0,success
+Llama3.2-3B,agentic,putnam_2017_B6_018,1.0,True,6,6047.0,363.4997,160.31,3454.0,success
+Llama3.2-3B,agentic,putnam_2018_A1_019,0.0,False,22 \times 21 \times 20 \times ... \times 2 = 2.43 \times 10^{12},13047.0,1007.8406,69.19,3454.0,success
+Llama3.2-3B,agentic,putnam_2019_B2_020,1.0,True,231,6781.0,382.2453,163.13,3454.0,success
+Llama3.2-3B,agentic,putnam_2020_A3_021,0.0,False,2,6391.0,337.0482,163.1,3454.0,success
+Llama3.2-3B,agentic,putnam_2021_B4_022,1.0,True,23,20485.0,1404.7378,163.66,3454.0,success
+Llama3.2-3B,agentic,putnam_2022_A5_023,1.0,True,2,5891.0,364.9362,164.02,3454.0,success
+Llama3.2-3B,agentic,putnam_2023_B6_024,0.0,False,99,6094.0,377.9854,160.93,3454.0,success
+Llama3.2-3B,agentic,putnam_2000_A1_025,1.0,True,4,5719.0,307.9483,160.26,3454.0,success
+Llama3.2-3B,agentic,putnam_2001_B2_026,0.0,False,0,11046.0,745.7537,160.23,3454.0,success
+Llama3.2-3B,agentic,putnam_2002_A3_027,1.0,True,406,6015.0,347.4839,160.54,3454.0,success
+Llama3.2-3B,agentic,putnam_2003_B4_028,1.0,True,0,11531.0,709.3503,161.68,3454.0,success
+Llama3.2-3B,agentic,putnam_2004_A5_029,1.0,True,30,20093.0,1325.5056,163.66,3454.0,success
+Llama3.2-3B,agentic,putnam_2005_B6_030,1.0,True,2,4734.0,244.6737,164.25,3454.0,success
+Llama3.2-3B,agentic,putnam_2006_A1_031,1.0,True,63,5188.0,254.2049,162.35,3454.0,success
+Llama3.2-3B,agentic,putnam_2007_B2_032,0.0,False,7,10281.0,707.515,163.94,3454.0,success
+Llama3.2-3B,agentic,putnam_2008_A3_033,0.0,False,36 \times 35 \times 34 \times ... \times 36 - 36! + 36,13750.0,1051.411,69.99,3454.0,success
+Llama3.2-3B,agentic,putnam_2009_B4_034,1.0,True,630,5922.0,345.7711,163.93,3454.0,success
+Llama3.2-3B,agentic,putnam_2010_A5_035,1.0,True,\frac{1}{1332},6656.0,388.5594,162.62,3454.0,success
+Llama3.2-3B,agentic,putnam_2011_B6_036,1.0,True,37,18484.0,1481.6298,71.58,3454.0,success
+Llama3.2-3B,agentic,putnam_2012_A1_037,1.0,True,2,5125.0,319.441,161.81,3454.0,success
+Llama3.2-3B,agentic,putnam_2013_B2_038,1.0,True,77,5203.0,290.3521,160.83,3454.0,success
+Llama3.2-3B,agentic,putnam_2014_A3_039,0.0,False,25,12672.0,994.3357,70.12,3454.0,success
+Llama3.2-3B,agentic,putnam_2015_B4_040,0.0,False,43 \cdot 42 \cdot 41 \cdot ... \cdot 43 - 43 \cdot 42 \cdot 41 \cdot ... \cdot 42 + 43 \cdot 42 \cdot 41 \cdot ... \cdot 41,13453.0,1094.8874,70.2,3454.0,success
+Llama3.2-3B,agentic,putnam_2016_A5_041,1.0,True,903,5766.0,378.3213,164.6,3454.0,success
+Llama3.2-3B,agentic,putnam_2017_B6_042,1.0,True,1/128,21172.0,1496.3104,163.0,3454.0,success
+Llama3.2-3B,agentic,putnam_2018_A1_043,0.0,False,0,8281.0,542.8076,163.97,3454.0,success
+Llama3.2-3B,agentic,putnam_2019_B2_044,1.0,True,2,7157.0,458.3968,164.41,3454.0,success
+Llama3.2-3B,agentic,putnam_2020_A3_045,1.0,True,91,5906.0,303.243,162.73,3454.0,success
+Llama3.2-3B,agentic,putnam_2021_B4_046,0.0,False,100,11985.0,925.2566,70.32,3454.0,success
+Llama3.2-3B,agentic,putnam_2022_A5_047,0.0,False,50 \times 49 \times 48 \times ... \times 1 - 50 \times 49 \times 48 \times ... \times 2 + 50 \times 49 \times 48 \times ... \times 1,14516.0,1167.1882,71.94,3454.0,success
+Llama3.2-3B,agentic,putnam_2023_B6_048,1.0,True,1225,5375.0,301.6797,164.54,3454.0,success
+Llama3.2-3B,agentic,putnam_2000_A1_049,0.0,False,1,23657.0,1584.3278,164.73,3454.0,success
+Llama3.2-3B,agentic,putnam_2001_B2_050,1.0,True,51,20719.0,1414.5351,163.51,3454.0,success
+Llama3.2-3B,vanilla,putnam_2000_A1_001,0.0,False,0,6437.0,490.745,42.38,3454.0,failed
+Llama3.2-3B,vanilla,putnam_2001_B2_002,1.0,True,2,4297.0,346.1444,42.39,3454.0,success
+Llama3.2-3B,vanilla,putnam_2002_A3_003,1.0,True,7,2203.0,161.4976,61.57,3454.0,success
+Llama3.2-3B,vanilla,putnam_2003_B4_004,0.0,False,3,7312.0,563.583,68.49,3454.0,failed
+Llama3.2-3B,vanilla,putnam_2004_A5_005,0.0,False,960,3219.0,246.2032,42.54,3454.0,failed
+Llama3.2-3B,vanilla,putnam_2005_B6_006,1.0,True,28,2985.0,234.0265,67.18,3454.0,success
+Llama3.2-3B,vanilla,putnam_2006_A1_007,0.0,False,-\frac{17}{72},6031.0,486.5119,67.17,3454.0,failed
+Llama3.2-3B,vanilla,putnam_2007_B2_008,1.0,True,9,7890.0,619.1827,68.6,3454.0,success
+Llama3.2-3B,vanilla,putnam_2008_A3_009,1.0,True,2,4532.0,357.1267,61.75,3454.0,success
+Llama3.2-3B,vanilla,putnam_2009_B4_010,1.0,True,21,2234.0,158.7634,66.82,3454.0,success
+Llama3.2-3B,vanilla,putnam_2010_A5_011,0.0,False,18,8141.0,653.3693,68.68,3454.0,failed
+Llama3.2-3B,vanilla,putnam_2011_B6_012,0.0,False,1312204800000,4641.0,374.6343,67.41,3454.0,failed
+Llama3.2-3B,vanilla,putnam_2012_A1_013,1.0,True,105,3312.0,246.5373,67.13,3454.0,success
+Llama3.2-3B,vanilla,putnam_2013_B2_014,0.0,False,-\frac{1}{15},4875.0,376.239,67.6,3454.0,failed
+Llama3.2-3B,vanilla,putnam_2014_A3_015,1.0,True,16,10312.0,838.9627,43.01,3454.0,success
+Llama3.2-3B,vanilla,putnam_2015_B4_016,1.0,True,2,3234.0,258.6961,43.02,3454.0,success
+Llama3.2-3B,vanilla,putnam_2016_A5_017,1.0,True,35,2140.0,162.8916,43.04,3454.0,success
+Llama3.2-3B,vanilla,putnam_2017_B6_018,0.0,False,11,4687.0,377.1041,53.77,3454.0,failed
+Llama3.2-3B,vanilla,putnam_2018_A1_019,0.0,False,25569211313211311132,3625.0,288.4272,43.08,3454.0,failed
+Llama3.2-3B,vanilla,putnam_2019_B2_020,1.0,True,231,3235.0,250.9891,43.09,3454.0,success
+Llama3.2-3B,vanilla,putnam_2020_A3_021,0.0,False,\frac{1}{12},4359.0,344.0333,49.66,3454.0,failed
+Llama3.2-3B,vanilla,putnam_2021_B4_022,0.0,False,1,10953.0,875.0568,43.14,3454.0,failed
+Llama3.2-3B,vanilla,putnam_2022_A5_023,0.0,False,24,11062.0,882.4544,67.66,3454.0,failed
+Llama3.2-3B,vanilla,putnam_2023_B6_024,1.0,True,49,2344.0,176.505,43.16,3454.0,success
+Llama3.2-3B,vanilla,putnam_2000_A1_025,0.0,False,27,11015.0,891.5834,67.74,3454.0,failed
+Llama3.2-3B,vanilla,putnam_2001_B2_026,0.0,False,"241,047,610",5844.0,427.5727,67.77,3454.0,failed
+Llama3.2-3B,vanilla,putnam_2002_A3_027,1.0,True,406,3234.0,235.8683,67.79,3454.0,success
+Llama3.2-3B,vanilla,putnam_2003_B4_028,0.0,False,\frac{1}{12},4375.0,324.0339,43.3,3454.0,failed
+Llama3.2-3B,vanilla,putnam_2004_A5_029,0.0,False,1,11078.0,859.9845,43.34,3454.0,failed
+Llama3.2-3B,vanilla,putnam_2005_B6_030,1.0,True,2,7844.0,604.7192,67.84,3454.0,success
+Llama3.2-3B,vanilla,putnam_2006_A1_031,1.0,True,63,2297.0,151.637,43.36,3454.0,success
+Llama3.2-3B,vanilla,putnam_2007_B2_032,0.0,False,4,6375.0,495.1548,67.86,3454.0,failed
+Llama3.2-3B,vanilla,putnam_2008_A3_033,0.0,False,2.05 × 10^32,4656.0,352.6028,43.39,3454.0,failed
+Llama3.2-3B,vanilla,putnam_2009_B4_034,1.0,True,630,3437.0,278.8136,68.13,3454.0,success
+Llama3.2-3B,vanilla,putnam_2010_A5_035,0.0,False,\frac{1}{4},4594.0,357.1789,43.51,3454.0,failed
+Llama3.2-3B,vanilla,putnam_2011_B6_036,0.0,False,37\infty,11016.0,872.3675,68.04,3454.0,failed
+Llama3.2-3B,vanilla,putnam_2012_A1_037,1.0,True,2,3265.0,251.3259,43.56,3454.0,success
+Llama3.2-3B,vanilla,putnam_2013_B2_038,1.0,True,77,2203.0,159.7304,43.57,3454.0,success
+Llama3.2-3B,vanilla,putnam_2014_A3_039,0.0,False,2,7547.0,571.3634,43.58,3454.0,failed
+Llama3.2-3B,vanilla,putnam_2015_B4_040,0.0,False,6.343 × 10^67,5453.0,425.6354,43.6,3454.0,failed
+Llama3.2-3B,vanilla,putnam_2016_A5_041,1.0,True,903,2218.0,164.3948,69.66,3454.0,success
+Llama3.2-3B,vanilla,putnam_2017_B6_042,0.0,False,\frac{1}{5},4156.0,318.9869,43.64,3454.0,failed
+Llama3.2-3B,vanilla,putnam_2018_A1_043,0.0,False,1,11000.0,868.8688,69.68,3454.0,failed
+Llama3.2-3B,vanilla,putnam_2019_B2_044,1.0,True,2,3282.0,249.3603,68.0,3454.0,success
+Llama3.2-3B,vanilla,putnam_2020_A3_045,1.0,True,91,4906.0,390.7642,43.68,3454.0,success
+Llama3.2-3B,vanilla,putnam_2021_B4_046,0.0,False,189,4250.0,327.7078,68.21,3454.0,failed
+Llama3.2-3B,vanilla,putnam_2022_A5_047,0.0,False,49,10969.0,846.1444,43.73,3454.0,failed
+Llama3.2-3B,vanilla,putnam_2023_B6_048,1.0,True,1225,2266.0,169.5133,67.99,3454.0,success
+Llama3.2-3B,vanilla,putnam_2000_A1_049,0.0,False,-\frac{1}{50},5078.0,388.9305,43.84,3454.0,failed
+Llama3.2-3B,vanilla,putnam_2001_B2_050,0.0,False,0,5375.0,418.6105,60.12,3454.0,failed
+Phi4-mini-reasoning,agentic,putnam_2000_A1_001,0.0,False,0,59687.0,4544.6569,58.27,4283.0,success
+Phi4-mini-reasoning,agentic,putnam_2001_B2_002,0.0,False,4,58625.0,4448.1551,58.39,4280.0,success
+Phi4-mini-reasoning,agentic,putnam_2002_A3_003,0.0,False,"7. But why would the user mention the output from sg_1 as 7.0? Maybe in the first run, the answer was 7, but the user is now confused",61906.0,4468.6097,151.52,4627.0,success
+Phi4-mini-reasoning,agentic,putnam_2003_B4_004,0.0,False,366,52516.0,4021.0122,52.14,4691.0,success
+Phi4-mini-reasoning,agentic,putnam_2004_A5_005,0.0,False,"<think>
+ Final answer Within \boxed{}:",51515.0,3941.9745,51.66,4552.0,success
+Phi4-mini-reasoning,agentic,putnam_2005_B6_006,0.0,False,24,42516.0,2664.4282,145.65,4467.0,success
+Phi4-mini-reasoning,agentic,putnam_2006_A1_007,0.0,False,-1,57188.0,4493.2785,56.13,4468.0,success
+Phi4-mini-reasoning,agentic,putnam_2007_B2_008,0.0,False,"<think>
+Your name is Phi. Your name's first letter is T. .   .   . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .",69969.0,4476.7393,54.64,4469.0,success
+Phi4-mini-reasoning,agentic,putnam_2008_A3_009,0.0,False,"You mean
+Your name is Phi San.
+Phi San.
+__ . .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .",80563.0,4244.0293,149.54,4304.0,success
+Phi4-mini-reasoning,agentic,putnam_2009_B4_010,0.0,False,1,60171.0,3241.3755,55.59,4866.0,success
+Phi4-mini-reasoning,agentic,putnam_2010_A5_011,0.0,False,1,75265.0,4027.3684,55.84,4995.0,success
+Phi4-mini-reasoning,agentic,putnam_2011_B6_012,0.0,False,1597,72516.0,3915.4264,57.43,5073.0,success
+Phi4-mini-reasoning,agentic,putnam_2012_A1_013,0.0,False,"( 1. Your name-\boxed{}.Your name is  Your name is called ""Your name is called ""Your name-\
+Your name is-\(-\(\alpha-\)(\(\alpha\))\-\(\(\alpha\)Your name is called The derivation of is called upon upon your name is called the function \( \(\alpha\). The function \( \(\alpha\)Your name is called upon upon the function \( \alpha \)Your name is called \( \(\(\alpha\)Your name-\(\(\alpha\)\)Your name is-\(\(\(\alpha\)Your name is called upon upon the function \( \(\alpha\) 1.  The value of the expression \(\(\alpha\) is the number ofYour name is called upon named is is called ""Your name is called \( \(\alpha\)Your name is called-\(\(\alpha\)The value ofReturn your function is is called \( \(\alpha\)Your name is called isYour name is called \( \(\alpha\)Your name-\(\(\alpha\)The value of the function \( \(\alpha\) is calledYour name is called upon-\(\(\alpha\)Your named called is called \( \(\alpha\)Your name named named is called \( \(\alpha\)Your name is-\(\(\alpha\)Your name is called \( \(\alpha\)Your name is-\(\(\alpha\)The value of the function \( \(\(\alpha\)Your name is called \( \(\alpha\)Your name is called is called \( \(\alpha\)Your name is named named \( \(\alpha\)Your name is called \( \(\alpha\)Your name is called \( \(\alpha\)Your name is called-\(\(\alpha\)Your name is called \( \(\alpha\)Your name is-\(\(\alpha\)Your name is called \( \(\(\(\alpha\)Your name is called \( \(\alpha\)Your name is named-\(\(\(\alpha\)Your name is called \( \(\(\alpha\)Your name is called \( \(\alpha\)Your name is called \( \(\(\alpha\)Your name is called-\(\(\alpha\)Your name is called \( \(\(\(\(\alpha\)Your name is called \( \(\(\(\(\alpha\)Your name is called \( \(\(\(\(\(\(\(\(\(\",86313.0,4666.5479,50.27,5079.0,success
+Phi4-mini-reasoning,agentic,putnam_2013_B2_014,1.0,True,014,88281.0,4770.5246,50.05,5477.0,success
+Phi4-mini-reasoning,agentic,putnam_2014_A3_015,0.0,False,897,88687.0,4801.7813,51.86,5351.0,success
+Phi4-mini-reasoning,agentic,putnam_2015_B4_016,0.0,False,895,80485.0,4357.5486,51.79,4988.0,success
+Phi4-mini-reasoning,agentic,putnam_2016_A5_017,0.0,False,1,69562.0,3753.9585,50.75,4988.0,success
+Phi4-mini-reasoning,agentic,putnam_2017_B6_018,0.0,False,767,100375.0,5405.4922,49.6,4995.0,success
+Phi4-mini-reasoning,agentic,putnam_2018_A1_019,0.0,False,799,43359.0,2342.723,52.0,4996.0,success
+Phi4-mini-reasoning,agentic,putnam_2019_B2_020,0.0,False,17,75843.0,4110.9163,50.89,4988.0,success
+Phi4-mini-reasoning,agentic,putnam_2020_A3_021,0.0,False,799,72422.0,3926.1196,55.27,4988.0,success
+Phi4-mini-reasoning,agentic,putnam_2021_B4_022,0.0,False,898,85062.0,4622.4635,55.82,4988.0,success
+Phi4-mini-reasoning,agentic,putnam_2022_A5_023,0.0,False,692,63438.0,3427.6385,54.55,4988.0,success
+Phi4-mini-reasoning,agentic,putnam_2023_B6_024,0.0,False,863,74297.0,4036.6253,54.56,4989.0,success
+Phi4-mini-reasoning,agentic,putnam_2000_A1_025,0.0,False,010,79891.0,4335.07,50.37,4981.0,success
+Phi4-mini-reasoning,agentic,putnam_2001_B2_026,0.0,False,887,70391.0,3809.943,51.91,4981.0,success
+Phi4-mini-reasoning,agentic,putnam_2002_A3_027,0.0,False,010,82469.0,4454.5549,52.27,5493.0,success
+Phi4-mini-reasoning,agentic,putnam_2003_B4_028,0.0,False,898,67719.0,3563.4791,54.46,5447.0,success
+Phi4-mini-reasoning,agentic,putnam_2004_A5_029,0.0,False,795,82203.0,4325.2421,52.86,5108.0,success
+Phi4-mini-reasoning,agentic,putnam_2005_B6_030,0.0,False,898,63953.0,4995.4298,52.66,4996.0,success
+Phi4-mini-reasoning,agentic,putnam_2006_A1_031,0.0,False,898,73750.0,5619.4638,53.23,5049.0,success
+Phi4-mini-reasoning,agentic,putnam_2007_B2_032,0.0,False,898,65937.0,4748.9857,53.38,5212.0,success
+Phi4-mini-reasoning,agentic,putnam_2008_A3_033,0.0,False,898,67875.0,4727.7978,49.17,5196.0,success
+Phi4-mini-reasoning,agentic,putnam_2009_B4_034,0.0,False,898,64672.0,4610.35,50.73,5193.0,success
+Phi4-mini-reasoning,agentic,putnam_2010_A5_035,0.0,False,888,73844.0,5280.9805,52.89,5194.0,success
+Phi4-mini-reasoning,agentic,putnam_2011_B6_036,0.0,False,888,42766.0,2994.3906,52.1,5193.0,success
+Phi4-mini-reasoning,agentic,putnam_2012_A1_037,0.0,False,888,58860.0,4167.1418,52.64,5194.0,success
+Phi4-mini-reasoning,agentic,putnam_2013_B2_038,0.0,False,940,77094.0,5513.8684,49.14,5194.0,success
+Phi4-mini-reasoning,agentic,putnam_2014_A3_039,0.0,False,898,63985.0,4549.8648,50.07,5194.0,success
+Phi4-mini-reasoning,agentic,putnam_2015_B4_040,1.0,True,898,58860.0,4162.8321,50.16,5194.0,success
+Phi4-mini-reasoning,agentic,putnam_2016_A5_041,0.0,False,001,49469.0,3289.6704,50.31,5194.0,success
+Phi4-mini-reasoning,agentic,putnam_2017_B6_042,0.0,False,736,86156.0,5945.8658,49.2,5196.0,success
+Phi4-mini-reasoning,agentic,putnam_2018_A1_043,0.0,False,940,61469.0,4297.4652,53.16,5190.0,success
+Phi4-mini-reasoning,agentic,putnam_2019_B2_044,0.0,False,899,76813.0,5355.2063,53.34,5190.0,success
+Phi4-mini-reasoning,agentic,putnam_2020_A3_045,0.0,False,898,86860.0,6018.4382,52.49,5190.0,success
+Phi4-mini-reasoning,agentic,putnam_2021_B4_046,0.0,False,882,92375.0,6263.944,48.5,5196.0,success
+Phi4-mini-reasoning,agentic,putnam_2022_A5_047,0.0,False,888,57610.0,4116.1136,48.75,5196.0,success
+Phi4-mini-reasoning,agentic,putnam_2023_B6_048,0.0,False,902,60406.0,4239.8654,50.82,5191.0,success
+Phi4-mini-reasoning,agentic,putnam_2000_A1_049,0.0,False,820,49562.0,3436.1468,53.85,5191.0,success
+Phi4-mini-reasoning,agentic,putnam_2001_B2_050,0.0,False,1,67422.0,4718.1865,53.65,5191.0,success
+Phi4-mini-reasoning,vanilla,putnam_2000_A1_001,0.0,False,1,16172.0,1231.273,34.44,4259.0,failed
+Phi4-mini-reasoning,vanilla,putnam_2001_B2_002,1.0,True,2,16125.0,1227.019,34.47,4259.0,success
+Phi4-mini-reasoning,vanilla,putnam_2002_A3_003,1.0,True,7,16296.0,1242.8944,34.54,4259.0,success
+Phi4-mini-reasoning,vanilla,putnam_2003_B4_004,0.0,False,40,16437.0,1227.6074,60.96,4271.0,failed
+Phi4-mini-reasoning,vanilla,putnam_2004_A5_005,0.0,False,1854,16313.0,1229.6498,30.65,4270.0,failed
+Phi4-mini-reasoning,vanilla,putnam_2005_B6_006,0.0,False,113,16468.0,1250.1936,56.41,4259.0,failed
+Phi4-mini-reasoning,vanilla,putnam_2006_A1_007,1.0,True,1/72,16375.0,1216.3754,31.79,4259.0,success
+Phi4-mini-reasoning,vanilla,putnam_2007_B2_008,1.0,True,"always 9? But that seems too straightforward. Let me check with another example. Suppose f(x) is a function that is 9 on [0,1] and 0 elsewhere. But wait, f is only defined on [0,1], so maybe f(x) is 9 on [0,1] and 0 outside. But the integral from 0 to 1/n would be 9*(1/n), so n times that is 9, so the limit is 9. But that's the same as the constant function. H",16594.0,1212.3238,54.76,4259.0,success
+Phi4-mini-reasoning,vanilla,putnam_2008_A3_009,1.0,True,2,16156.0,1204.8193,28.54,4259.0,success
+Phi4-mini-reasoning,vanilla,putnam_2009_B4_010,1.0,True,21,16172.0,1224.4952,55.03,4259.0,success
+Phi4-mini-reasoning,vanilla,putnam_2010_A5_011,0.0,False,"a multiple of 12. In other words, n² + 11 ≡ 0 mod 12. That means n² ≡ -11 mod 12. But since -11 is the same as 1 mod 12 (because 12 - 11 = 1), this simplifies to n² ≡ 1 mod 12. So the problem reduces to finding all positive integers n ≤ 100 where n² ≡ 1 mod 12",16188.0,1212.265,28.85,4275.0,failed
+Phi4-mini-reasoning,vanilla,putnam_2011_B6_012,0.0,False,2,16156.0,1209.3167,28.89,4260.0,failed
+Phi4-mini-reasoning,vanilla,putnam_2012_A1_013,0.0,False,15,16187.0,1216.0097,53.93,4260.0,failed
+Phi4-mini-reasoning,vanilla,putnam_2013_B2_014,0.0,False,17,16110.0,1217.7105,29.35,4260.0,failed
+Phi4-mini-reasoning,vanilla,putnam_2014_A3_015,0.0,False,"that the limit is equal to the value of f(0)? Wait, but in the first example, f(0) is 16, and the limit was 16. In the second example, f(0) is 0, and the limit was 0. So maybe the limit is f(0)? But how can that be? Let me check another example",16141.0,1224.2449,55.71,4260.0,failed
+Phi4-mini-reasoning,vanilla,putnam_2015_B4_016,1.0,True,"2. But perhaps the problem is more about the possible structure of G. Wait, maybe the problem is to find the possible indices of all normal subgroups of G. But the problem specifically says ""If G has a normal subgroup of order 18, find the index [G:H]."" So maybe the answer is 2. But maybe the problem is to find the index of the normal subgroup in G, which is 2. But perhaps the problem is more complex. Wait, maybe the normal subgroup is not H, but another subgroup. Wait, the problem is written as ""If G has a normal subgroup of order 18, find the index [G:H]."" So H is the normal subgroup. Then the index is 2. But maybe the problem is to find the index of the normal",16156.0,1228.8759,54.33,4260.0,success
+Phi4-mini-reasoning,vanilla,putnam_2016_A5_017,1.0,True,35,16062.0,1233.4396,29.48,4260.0,success
+Phi4-mini-reasoning,vanilla,putnam_2017_B6_018,0.0,False,"11. But let me check if 96 and 94 are indeed ≤100. 96 is, 94 is. So 6 +5=11. So the number of positive integers n ≤100 such that n² +18 is divisible by19 is 11. Therefore, the answer is",16140.0,1223.7355,30.5,4260.0,failed
+Phi4-mini-reasoning,vanilla,putnam_2018_A1_019,0.0,False,2,16078.0,1219.5407,54.98,4271.0,failed
+Phi4-mini-reasoning,vanilla,putnam_2019_B2_020,1.0,True,231,16062.0,1219.5482,55.56,4271.0,success
+Phi4-mini-reasoning,vanilla,putnam_2020_A3_021,0.0,False,1,16094.0,1235.3884,30.88,4259.0,failed
+Phi4-mini-reasoning,vanilla,putnam_2021_B4_022,0.0,False,"f(0). But let me verify this with an example. Suppose f(x) is a constant function. Let's say f(x) = 23 for all x in [0,1], since the integral from 0 to 1 is 23. Then, the integral from 0 to 1/n of f(x) dx is 23(1/n). Multiplying by n gives 23, so the limit as n approaches infinity is 23. But f(0) is 23, so that works. If f(x) is a different function, say f(x) = 23x, then the integral from 0 to 1/n is (23/2)(1/n)^2. Multiplying by n gives (23/2)*(1/n), which approaches 0 as n approaches infinity. And f(0) is 0, so that also works. So, in both cases, the limit is f(0). Therefore, the answer should be f(0)",16187.0,1221.6734,30.91,4259.0,failed
+Phi4-mini-reasoning,vanilla,putnam_2022_A5_023,0.0,False,"2. But maybe the problem is more complex. Wait, let me check the original problem again",16187.0,1215.9976,31.11,4259.0,failed
+Phi4-mini-reasoning,vanilla,putnam_2023_B6_024,1.0,True,49,14859.0,1121.9216,31.14,4259.0,success
+Phi4-mini-reasoning,vanilla,putnam_2000_A1_025,0.0,False,13*(2m) + 1 = 26m + 1. So solutions are x ≡ 1 mod 26,16110.0,1221.6845,57.54,4271.0,failed
+Phi4-mini-reasoning,vanilla,putnam_2001_B2_026,0.0,False,29 * !28,16125.0,1226.0995,57.63,4259.0,failed
+Phi4-mini-reasoning,vanilla,putnam_2002_A3_027,1.0,True,406,16156.0,1220.0587,31.36,4259.0,success
+Phi4-mini-reasoning,vanilla,putnam_2003_B4_028,0.0,False,+30,16157.0,1218.7204,31.55,4259.0,failed
+Phi4-mini-reasoning,vanilla,putnam_2004_A5_029,0.0,False,"0. If the function f is such that its integral over [0,1] is 30, but when we take a small interval near 0, the integral could be small. But since the function is continuous, maybe the integral over [0,1/n] is approximately f(0) * (1/n), so multiplying by n gives f(0). Therefore, the limit is f(0). But how do we know that f(",16360.0,1227.9572,39.0,4259.0,failed
+Phi4-mini-reasoning,vanilla,putnam_2005_B6_030,0.0,False,"2. But maybe the original problem is different. Wait, perhaps the original problem is to find the index of the normal subgroup in G, which would be 2. But maybe the original problem is more complex. Wait, perhaps the problem is to find the possible values of the index of all subgroups H such that G has a normal subgroup of order 32? But the problem says ""find the index [G:H]"", which is a specific number. H",16156.0,1221.1809,31.57,4259.0,failed
+Phi4-mini-reasoning,vanilla,putnam_2006_A1_031,1.0,True,63,16125.0,1222.9657,31.73,4259.0,success
+Phi4-mini-reasoning,vanilla,putnam_2007_B2_032,1.0,True,3,16078.0,1227.1817,31.73,4259.0,success
+Phi4-mini-reasoning,vanilla,putnam_2008_A3_033,0.0,False,35,16156.0,1234.5328,56.51,4275.0,failed
+Phi4-mini-reasoning,vanilla,putnam_2009_B4_034,1.0,True,630,16312.0,1223.0367,31.75,4259.0,success
+Phi4-mini-reasoning,vanilla,putnam_2010_A5_035,0.0,False,2/2,16312.0,1222.436,31.68,4259.0,failed
+Phi4-mini-reasoning,vanilla,putnam_2011_B6_036,0.0,False,"probably related to the value of f(0) or something like that. Wait, but how?",16094.0,1218.3032,31.82,4259.0,failed
+Phi4-mini-reasoning,vanilla,putnam_2012_A1_037,0.0,False,39,16141.0,1220.534,31.87,4259.0,failed
+Phi4-mini-reasoning,vanilla,putnam_2013_B2_038,1.0,True,77,16156.0,1217.7618,40.93,4259.0,success
+Phi4-mini-reasoning,vanilla,putnam_2014_A3_039,0.0,False,n ≡ 1 mod 40. Because 1 is the solution,16141.0,1227.2438,31.9,4259.0,failed
+Phi4-mini-reasoning,vanilla,putnam_2015_B4_040,0.0,False,42,16219.0,1223.5166,56.4,4282.0,failed
+Phi4-mini-reasoning,vanilla,putnam_2016_A5_041,1.0,True,903,16110.0,1210.9046,42.11,4280.0,success
+Phi4-mini-reasoning,vanilla,putnam_2017_B6_042,0.0,False,1,16203.0,1230.5254,56.85,4276.0,failed
+Phi4-mini-reasoning,vanilla,putnam_2018_A1_043,0.0,False,"f(0), but how do we know that? Because the Mean Value Theorem for integrals says that there exists a c in [0,1/n] such that the integral is f(c)/n. Then, as n approaches infinity, c approaches 0. So, the limit would be f(0). But the problem doesn't give any specific information about f(0), except that f is continuous. So, maybe the answer is f(0), but how do we know that the limit is f(0)? Wait, but the problem doesn't state any condition on f(0). H",16141.0,1234.3917,38.93,4277.0,failed
+Phi4-mini-reasoning,vanilla,putnam_2019_B2_044,1.0,True,2,16250.0,1228.4002,58.4,4277.0,success
+Phi4-mini-reasoning,vanilla,putnam_2020_A3_045,1.0,True,"the trace, which is given as 91. Therefore, the answer is 91",16172.0,1231.7068,56.97,4272.0,success
+Phi4-mini-reasoning,vanilla,putnam_2021_B4_046,0.0,False,"a multiple of 47. In other words, n² + 46 ≡ 0 mod 47. That means n² ≡ -46 mod 47. But since modulo operations are cyclic, I can also think of this as n² ≡ (47 - 46) mod 47, which is n² ≡ 1 mod 47. Wait, is that right? Because -46 mod 47 is the same as 1 mod 47 because 47 - 46 = 1. So, n² ≡ 1 mod 47",16140.0,1212.6979,58.53,4259.0,failed
+Phi4-mini-reasoning,vanilla,putnam_2022_A5_047,0.0,False,50 * !(49),16094.0,1208.5219,32.26,4259.0,failed
+Phi4-mini-reasoning,vanilla,putnam_2023_B6_048,1.0,True,1225,16187.0,1223.1975,32.28,4259.0,success
+Phi4-mini-reasoning,vanilla,putnam_2000_A1_049,0.0,False,"-1/500000? That can't be right because the integral of x^49(1 - x) from 0 to 1 should be positive since the function is positive in that interval. Hmm, maybe I made a mistake in the integration by parts",16109.0,1236.6226,56.85,4259.0,failed
+Phi4-mini-reasoning,vanilla,putnam_2001_B2_050,1.0,True,"51. But if f(x) is not constant, say f(x) is 51 on [0,1], but 0 elsewhere. Wait, but f is only defined on [0,1], so maybe f(x) is 51 on [0,1], but the integral is 51. Wait, if f(x) is 51 on [0,1], then the integral is 511=51. Then, the integral from 0 to 1/n is 51(1/n), so n times that is 51, so the limit is 51. But if f(x) is 0 except at x=0, but since f is continuous on [0,1], it can't be 0 except at a single point. Continuity on [0,1] means it's continuous at every point in the interval, so it can't have jumps. So, for example, if f(x) is 0 on [0,1) and f(1)=51, but that would make f discontinuous at 1. But the problem states f is continuous on [0,1], so such a function isn't allowed. Therefore, maybe the answer is always 51? But that seems counterintuitive. Wait, but in the example where f is constant, the answer is 51, but if",16172.0,1232.674,32.47,4275.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2000_A1_001,0.0,False,0,29188.0,2242.5312,72.16,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2001_B2_002,1.0,True,2,6000.0,441.0654,72.18,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2002_A3_003,1.0,True,7,11235.0,847.6761,70.71,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2003_B4_004,0.0,False,5,14406.0,1066.3526,46.14,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2004_A5_005,0.0,False,0.3681,12828.0,958.4278,72.32,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2005_B6_006,1.0,True,28,7343.0,535.0597,72.43,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2006_A1_007,1.0,True,\frac{1}{72},12062.0,915.7006,71.03,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2007_B2_008,0.0,False,0,24750.0,1885.4985,71.16,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2008_A3_009,1.0,True,2,6172.0,446.793,72.76,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2009_B4_010,1.0,True,21,23547.0,1786.5603,72.8,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2010_A5_011,0.0,False,3,25938.0,1964.8305,71.61,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2011_B6_012,0.0,False,5040,13562.0,994.4161,72.97,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2012_A1_013,1.0,True,105,11297.0,845.5058,71.6,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2013_B2_014,0.0,False,240,12031.0,777.3843,162.8,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2014_A3_015,0.0,False,0,18782.0,1428.1316,71.59,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2015_B4_016,1.0,True,2,6375.0,463.4497,73.28,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2016_A5_017,1.0,True,35,16484.0,1244.9878,73.36,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2017_B6_018,0.0,False,11,22172.0,1680.1431,71.83,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2018_A1_019,0.0,False,22 \times !21,13796.0,845.5971,164.21,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2019_B2_020,1.0,True,231,11015.0,836.9776,73.42,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2020_A3_021,1.0,True,\frac{1}{506},10640.0,719.1883,164.52,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2021_B4_022,0.0,False,3,30016.0,2326.0825,73.46,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2022_A5_023,1.0,True,2,6266.0,457.2928,73.54,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2023_B6_024,1.0,True,49,10188.0,773.848,73.57,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2000_A1_025,0.0,False,51,16594.0,1248.8048,47.48,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2001_B2_026,0.0,False,0.367879441171442321595523775,16531.0,976.0326,163.54,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2002_A3_027,1.0,True,406,11672.0,530.9925,145.76,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2003_B4_028,0.0,False,870,13422.0,759.6907,143.83,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2004_A5_029,0.0,False,0,29093.0,2302.1184,55.2,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2005_B6_030,1.0,True,2,5718.0,422.6198,58.0,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2006_A1_031,1.0,True,63,23765.0,1838.992,58.11,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2007_B2_032,0.0,False,9,25922.0,1972.5854,56.92,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2008_A3_033,0.0,False,5.35380,14922.0,1145.2585,58.55,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2009_B4_034,1.0,True,630,10187.0,547.6397,147.82,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2010_A5_035,1.0,True,\frac{1}{1332},10985.0,737.4279,151.2,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2011_B6_036,0.0,False,1,28860.0,2219.08,57.43,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2012_A1_037,1.0,True,2,5781.0,423.6943,57.6,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2013_B2_038,1.0,True,77,22562.0,1711.7975,59.38,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2014_A3_039,0.0,False,2,18734.0,1412.5253,59.32,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2015_B4_040,0.0,False,43 \times !42,19234.0,1450.7897,59.75,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2016_A5_041,1.0,True,903,8812.0,526.4191,152.23,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2017_B6_042,0.0,False,42,11375.0,751.6312,152.6,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2018_A1_043,0.0,False,1,18125.0,1376.7627,60.32,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2019_B2_044,1.0,True,2,14078.0,931.9022,150.52,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2020_A3_045,1.0,True,91,9110.0,687.022,58.99,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2021_B4_046,0.0,False,54,26047.0,1993.1034,59.13,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2022_A5_047,0.0,False,1.3946925,14187.0,1076.6537,60.64,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2023_B6_048,1.0,True,1225,8110.0,486.7423,151.16,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2000_A1_049,1.0,True,\frac{1}{2550},10984.0,740.6541,151.48,2756.0,success
+Qwen2.5-Math-1.5B,agentic,putnam_2001_B2_050,0.0,False,4,24000.0,1858.7324,59.29,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2000_A1_001,1.0,True,2,5859.0,449.8865,45.13,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2001_B2_002,1.0,True,2,2235.0,167.2642,45.11,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2002_A3_003,1.0,True,7,3047.0,210.8024,69.63,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2003_B4_004,0.0,False,40,7937.0,606.9472,69.8,2756.0,failed
+Qwen2.5-Math-1.5B,vanilla,putnam_2004_A5_005,0.0,False,14832,5843.0,444.2049,45.21,2756.0,failed
+Qwen2.5-Math-1.5B,vanilla,putnam_2005_B6_006,1.0,True,28,2219.0,162.4967,45.25,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2006_A1_007,1.0,True,\frac{1}{72},4359.0,332.6944,69.76,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2007_B2_008,1.0,True,9,5672.0,437.6478,69.78,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2008_A3_009,1.0,True,2,2156.0,149.7281,61.5,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2009_B4_010,1.0,True,21,2125.0,151.9139,45.32,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2010_A5_011,0.0,False,36,6812.0,516.4714,45.34,2756.0,failed
+Qwen2.5-Math-1.5B,vanilla,putnam_2011_B6_012,0.0,False,15 \times !14,4828.0,361.0976,69.98,2756.0,failed
+Qwen2.5-Math-1.5B,vanilla,putnam_2012_A1_013,1.0,True,105,2547.0,190.859,69.87,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2013_B2_014,1.0,True,\frac{1}{240},4437.0,347.0531,45.39,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2014_A3_015,1.0,True,16,5969.0,445.12,45.42,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2015_B4_016,1.0,True,2,2375.0,155.2783,45.43,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2016_A5_017,1.0,True,35,2375.0,173.5578,69.94,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2017_B6_018,0.0,False,11,6906.0,532.9441,64.67,2756.0,failed
+Qwen2.5-Math-1.5B,vanilla,putnam_2018_A1_019,0.0,False,22 \times !21,3688.0,271.474,45.5,2756.0,failed
+Qwen2.5-Math-1.5B,vanilla,putnam_2019_B2_020,1.0,True,231,2750.0,204.8335,71.54,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2020_A3_021,1.0,True,\frac{1}{506},4516.0,353.0181,45.53,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2021_B4_022,1.0,True,23,7156.0,537.7489,69.95,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2022_A5_023,1.0,True,2,2235.0,166.6658,45.57,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2023_B6_024,1.0,True,49,2390.0,165.5421,70.0,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2000_A1_025,0.0,False,15,7093.0,526.4464,52.17,2756.0,failed
+Qwen2.5-Math-1.5B,vanilla,putnam_2001_B2_026,0.0,False,29 \times !28,3328.0,243.6732,45.6,2756.0,failed
+Qwen2.5-Math-1.5B,vanilla,putnam_2002_A3_027,1.0,True,406,2875.0,192.5532,45.62,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2003_B4_028,1.0,True,\frac{1}{870},4687.0,352.9798,69.94,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2004_A5_029,1.0,True,30,6765.0,513.9278,45.63,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2005_B6_030,1.0,True,2,2079.0,146.3696,71.78,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2006_A1_031,1.0,True,63,2032.0,135.099,59.11,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2007_B2_032,0.0,False,12,8250.0,618.6693,45.69,2756.0,failed
+Qwen2.5-Math-1.5B,vanilla,putnam_2008_A3_033,0.0,False,36 \times !35,3485.0,254.6627,52.14,2756.0,failed
+Qwen2.5-Math-1.5B,vanilla,putnam_2009_B4_034,1.0,True,630,2922.0,215.3473,45.71,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2010_A5_035,1.0,True,\frac{1}{1332},4453.0,325.4339,71.88,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2011_B6_036,1.0,True,37,8203.0,632.9842,70.06,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2012_A1_037,1.0,True,2,2125.0,158.7635,45.75,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2013_B2_038,1.0,True,77,2109.0,154.532,70.46,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2014_A3_039,0.0,False,40,9063.0,706.6032,52.5,2756.0,failed
+Qwen2.5-Math-1.5B,vanilla,putnam_2015_B4_040,0.0,False,43 \times !42,2922.0,224.6628,70.41,2756.0,failed
+Qwen2.5-Math-1.5B,vanilla,putnam_2016_A5_041,1.0,True,903,2578.0,187.8928,70.42,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2017_B6_042,1.0,True,\frac{1}{1892},4719.0,361.2891,52.54,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2018_A1_043,1.0,True,44,5719.0,434.6519,70.43,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2019_B2_044,1.0,True,2,2453.0,167.045,70.58,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2020_A3_045,1.0,True,91,2281.0,165.7944,70.46,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2021_B4_046,0.0,False,5,4094.0,307.4714,45.88,2756.0,failed
+Qwen2.5-Math-1.5B,vanilla,putnam_2022_A5_047,0.0,False,50 \times !49,2953.0,216.7112,45.88,2756.0,failed
+Qwen2.5-Math-1.5B,vanilla,putnam_2023_B6_048,1.0,True,1225,2500.0,171.7885,45.9,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2000_A1_049,1.0,True,\frac{1}{2550},4719.0,348.9981,70.31,2756.0,success
+Qwen2.5-Math-1.5B,vanilla,putnam_2001_B2_050,1.0,True,51,5640.0,419.9959,70.52,2756.0,success
+Qwen2.5-Math-7B,agentic,putnam_2000_A1_001,0.0,False,,386843.0,6194.6069,33.68,6527.0,failed
+Qwen2.5-Math-7B,agentic,putnam_2001_B2_002,1.0,True,2,89641.0,1652.1967,51.96,6527.0,success
+Qwen2.5-Math-7B,agentic,putnam_2002_A3_003,1.0,True,7,189937.0,3292.6336,52.15,6527.0,success
+Qwen2.5-Math-7B,agentic,putnam_2003_B4_004,0.0,False,,386781.0,6192.5637,48.7,6527.0,failed
+Qwen2.5-Math-7B,agentic,putnam_2004_A5_005,0.0,False,,388922.0,6170.5111,50.58,6527.0,failed
+Qwen2.5-Math-7B,agentic,putnam_2005_B6_006,1.0,True,28,85406.0,1590.3276,49.11,6527.0,success
+Qwen2.5-Math-7B,agentic,putnam_2006_A1_007,0.0,False,72,505812.0,8265.9304,43.84,6527.0,success
+Qwen2.5-Math-7B,agentic,putnam_2007_B2_008,0.0,False,,386812.0,6189.4499,52.55,6527.0,failed
+Qwen2.5-Math-7B,agentic,putnam_2008_A3_009,1.0,True,2,89281.0,1656.4682,54.05,6527.0,success
+Qwen2.5-Math-7B,agentic,putnam_2009_B4_010,0.0,False,,427344.0,11504.6428,52.73,7498.0,failed
+Qwen2.5-Math-7B,agentic,putnam_2010_A5_011,0.0,False,,388719.0,6254.647,23.03,7393.0,failed
+Qwen2.5-Math-7B,agentic,putnam_2011_B6_012,0.0,False,,448500.0,7225.4313,17.7,6616.0,failed
+Qwen2.5-Math-7B,agentic,putnam_2012_A1_013,1.0,True,105,115281.0,2241.0399,44.45,6853.0,success
+Qwen2.5-Math-7B,agentic,putnam_2013_B2_014,0.0,False,,386750.0,6400.9745,18.93,6624.0,failed
+Qwen2.5-Math-7B,agentic,putnam_2014_A3_015,0.0,False,,389015.0,6453.9422,16.8,6617.0,failed
+Qwen2.5-Math-7B,agentic,putnam_2015_B4_016,1.0,True,2,67875.0,1367.5672,44.77,6624.0,success
+Qwen2.5-Math-7B,agentic,putnam_2016_A5_017,0.0,False,,423703.0,7762.0055,39.11,6902.0,failed
+Qwen2.5-Math-7B,agentic,putnam_2017_B6_018,0.0,False,,389203.0,9145.1202,131.46,7338.0,failed
+Qwen2.5-Math-7B,agentic,putnam_2018_A1_019,0.0,False,21,160453.0,5276.6388,46.04,7130.0,success
+Qwen2.5-Math-7B,agentic,putnam_2019_B2_020,1.0,True,231,116797.0,3629.3738,146.8,6996.0,success
+Qwen2.5-Math-7B,agentic,putnam_2020_A3_021,0.0,False,506,128437.0,4240.0976,53.68,7450.0,success
+Qwen2.5-Math-7B,agentic,putnam_2021_B4_022,0.0,False,,387016.0,8964.4703,47.09,7485.0,failed
+Qwen2.5-Math-7B,agentic,putnam_2022_A5_023,1.0,True,2,58219.0,1702.7433,63.62,7456.0,success
+Qwen2.5-Math-7B,agentic,putnam_2023_B6_024,1.0,True,49,488468.0,10216.6652,42.24,7538.0,success
+Qwen2.5-Math-7B,agentic,putnam_2000_A1_025,0.0,False,,446828.0,10601.907,42.43,7451.0,failed
+Qwen2.5-Math-7B,agentic,putnam_2001_B2_026,0.0,False,,388828.0,9037.0652,18.15,7382.0,failed
+Qwen2.5-Math-7B,agentic,putnam_2002_A3_027,1.0,True,406,115078.0,2792.0367,135.53,6996.0,success
+Qwen2.5-Math-7B,agentic,putnam_2003_B4_028,0.0,False,\frac{1}{30},189000.0,4501.4833,44.27,7469.0,success
+Qwen2.5-Math-7B,agentic,putnam_2004_A5_029,1.0,True,30,183344.0,5183.3255,53.3,7401.0,success
+Qwen2.5-Math-7B,agentic,putnam_2005_B6_030,1.0,True,2,78188.0,2564.8227,52.49,7048.0,success
+Qwen2.5-Math-7B,agentic,putnam_2006_A1_031,0.0,False,,421704.0,9216.2111,27.09,7364.0,failed
+Qwen2.5-Math-7B,agentic,putnam_2007_B2_032,0.0,False,,388688.0,6911.706,40.08,7515.0,failed
+Qwen2.5-Math-7B,agentic,putnam_2008_A3_033,0.0,False,,597172.0,13001.0387,46.34,7517.0,failed
+Qwen2.5-Math-7B,agentic,putnam_2009_B4_034,1.0,True,630,154735.0,2935.8939,44.63,7388.0,success
+Qwen2.5-Math-7B,agentic,putnam_2010_A5_035,1.0,True,\frac{1}{1332},533125.0,9819.8404,45.41,7383.0,success
+Qwen2.5-Math-7B,agentic,putnam_2011_B6_036,0.0,False,,386781.0,6627.8471,22.49,7534.0,failed
+Qwen2.5-Math-7B,agentic,putnam_2012_A1_037,1.0,True,2,78015.0,1515.1027,140.6,7060.0,success
+Qwen2.5-Math-7B,agentic,putnam_2013_B2_038,1.0,True,77,132188.0,2823.8643,49.81,7409.0,success
+Qwen2.5-Math-7B,agentic,putnam_2014_A3_039,0.0,False,,386657.0,7754.9987,23.56,7504.0,failed
+Qwen2.5-Math-7B,agentic,putnam_2015_B4_040,0.0,False,,388813.0,6835.1148,23.62,7350.0,failed
+Qwen2.5-Math-7B,agentic,putnam_2016_A5_041,1.0,True,903,121782.0,2417.645,48.57,7035.0,success
+Qwen2.5-Math-7B,agentic,putnam_2017_B6_042,0.0,False,,446406.0,10506.8435,48.54,7369.0,failed
+Qwen2.5-Math-7B,agentic,putnam_2018_A1_043,0.0,False,,388875.0,6657.9946,48.39,7382.0,failed
+Qwen2.5-Math-7B,agentic,putnam_2019_B2_044,1.0,True,2,58906.0,1226.714,50.22,7049.0,success
+Qwen2.5-Math-7B,agentic,putnam_2020_A3_045,0.0,False,,427203.0,7422.0597,48.73,7491.0,failed
+Qwen2.5-Math-7B,agentic,putnam_2021_B4_046,0.0,False,,388968.0,6748.0274,30.73,7546.0,failed
+Qwen2.5-Math-7B,agentic,putnam_2022_A5_047,0.0,False,,388953.0,7638.7375,132.18,6750.0,failed
+Qwen2.5-Math-7B,agentic,putnam_2023_B6_048,1.0,True,1225,133609.0,2501.735,66.64,6934.0,success
+Qwen2.5-Math-7B,agentic,putnam_2000_A1_049,0.0,False,5,371579.0,6270.7808,47.98,6758.0,success
+Qwen2.5-Math-7B,agentic,putnam_2001_B2_050,0.0,False,,386719.0,6735.7627,45.18,7065.0,failed
+Qwen2.5-Math-7B,vanilla,putnam_2000_A1_001,0.0,False,,386703.0,6511.8696,31.39,6524.0,failed
+Qwen2.5-Math-7B,vanilla,putnam_2001_B2_002,1.0,True,2,16922.0,352.8919,36.43,6521.0,success
+Qwen2.5-Math-7B,vanilla,putnam_2002_A3_003,1.0,True,7,42109.0,783.5611,24.02,6535.0,success
+Qwen2.5-Math-7B,vanilla,putnam_2003_B4_004,0.0,False,,386797.0,6487.3497,48.94,6535.0,failed
+Qwen2.5-Math-7B,vanilla,putnam_2004_A5_005,0.0,False,,389063.0,6494.66,37.64,6535.0,failed
+Qwen2.5-Math-7B,vanilla,putnam_2005_B6_006,1.0,True,28,24703.0,472.9184,50.91,6535.0,success
+Qwen2.5-Math-7B,vanilla,putnam_2006_A1_007,1.0,True,\frac{1}{72},52313.0,929.1456,52.76,6535.0,success
+Qwen2.5-Math-7B,vanilla,putnam_2007_B2_008,0.0,False,,386641.0,6450.7282,26.43,6525.0,failed
+Qwen2.5-Math-7B,vanilla,putnam_2008_A3_009,1.0,True,2,26359.0,476.1765,52.84,6525.0,success
+Qwen2.5-Math-7B,vanilla,putnam_2009_B4_010,1.0,True,21,42094.0,757.7793,51.33,6525.0,success
+Qwen2.5-Math-7B,vanilla,putnam_2010_A5_011,0.0,False,,386875.0,6496.8131,26.53,6525.0,failed
+Qwen2.5-Math-7B,vanilla,putnam_2011_B6_012,0.0,False,,388797.0,6494.2489,34.65,6527.0,failed
+Qwen2.5-Math-7B,vanilla,putnam_2012_A1_013,1.0,True,105,27266.0,517.6138,51.23,6527.0,success
+Qwen2.5-Math-7B,vanilla,putnam_2013_B2_014,1.0,True,\frac{1}{240},59844.0,1075.0936,51.25,6527.0,success
+Qwen2.5-Math-7B,vanilla,putnam_2014_A3_015,0.0,False,,386844.0,6726.6822,51.52,6527.0,failed
+Qwen2.5-Math-7B,vanilla,putnam_2015_B4_016,1.0,True,2,20266.0,400.444,26.69,6527.0,success
+Qwen2.5-Math-7B,vanilla,putnam_2016_A5_017,1.0,True,35,23218.0,481.3273,26.71,6527.0,success
+Qwen2.5-Math-7B,vanilla,putnam_2017_B6_018,0.0,False,,386875.0,6307.4689,26.71,6527.0,failed
+Qwen2.5-Math-7B,vanilla,putnam_2018_A1_019,0.0,False,22 \cdot !21,45141.0,803.7452,45.23,6527.0,failed
+Qwen2.5-Math-7B,vanilla,putnam_2019_B2_020,1.0,True,231,27922.0,541.4183,45.57,6527.0,success
+Qwen2.5-Math-7B,vanilla,putnam_2020_A3_021,0.0,False,,386843.0,6210.3103,45.65,6527.0,failed
+Qwen2.5-Math-7B,vanilla,putnam_2021_B4_022,0.0,False,f(0),60094.0,1017.3071,24.77,6527.0,failed
+Qwen2.5-Math-7B,vanilla,putnam_2022_A5_023,1.0,True,2,17719.0,314.5733,51.27,6527.0,success
+Qwen2.5-Math-7B,vanilla,putnam_2023_B6_024,1.0,True,49,22828.0,420.2178,50.16,6527.0,success
+Qwen2.5-Math-7B,vanilla,putnam_2000_A1_025,0.0,False,,386719.0,6213.2412,25.31,6527.0,failed
+Qwen2.5-Math-7B,vanilla,putnam_2001_B2_026,0.0,False,29 \times !28,39031.0,679.1079,49.98,6527.0,failed
+Qwen2.5-Math-7B,vanilla,putnam_2002_A3_027,1.0,True,406,36172.0,641.6287,25.25,6527.0,success
+Qwen2.5-Math-7B,vanilla,putnam_2003_B4_028,0.0,False,,386750.0,6191.6031,43.73,6527.0,failed
+Qwen2.5-Math-7B,vanilla,putnam_2004_A5_029,0.0,False,,388687.0,6240.2897,33.86,6527.0,failed
+Qwen2.5-Math-7B,vanilla,putnam_2005_B6_030,1.0,True,2,19375.0,356.2296,19.25,6527.0,success
+Qwen2.5-Math-7B,vanilla,putnam_2006_A1_031,1.0,True,63,24844.0,459.9552,44.12,6527.0,success
+Qwen2.5-Math-7B,vanilla,putnam_2007_B2_032,0.0,False,7,53546.0,927.3774,46.96,6527.0,failed
+Qwen2.5-Math-7B,vanilla,putnam_2008_A3_033,0.0,False,36 \times !35,33016.0,594.4047,22.46,6527.0,failed
+Qwen2.5-Math-7B,vanilla,putnam_2009_B4_034,1.0,True,630,37891.0,644.9888,47.34,6527.0,success
+Qwen2.5-Math-7B,vanilla,putnam_2010_A5_035,0.0,False,,386610.0,6202.8129,22.78,6527.0,failed
+Qwen2.5-Math-7B,vanilla,putnam_2011_B6_036,0.0,False,,388750.0,6169.1465,22.82,6527.0,failed
+Qwen2.5-Math-7B,vanilla,putnam_2012_A1_037,1.0,True,2,19937.0,352.8415,47.68,6527.0,success
+Qwen2.5-Math-7B,vanilla,putnam_2013_B2_038,1.0,True,77,24328.0,421.5546,47.73,6527.0,success
+Qwen2.5-Math-7B,vanilla,putnam_2014_A3_039,0.0,False,,386860.0,6205.7389,47.42,6527.0,failed
+Qwen2.5-Math-7B,vanilla,putnam_2015_B4_040,0.0,False,43 \times !42,44312.0,747.5394,47.7,6527.0,failed
+Qwen2.5-Math-7B,vanilla,putnam_2016_A5_041,1.0,True,903,36406.0,629.0048,47.97,6527.0,success
+Qwen2.5-Math-7B,vanilla,putnam_2017_B6_042,0.0,False,,386828.0,6197.1187,47.88,6527.0,failed
+Qwen2.5-Math-7B,vanilla,putnam_2018_A1_043,0.0,False,,388735.0,6205.257,23.05,6527.0,failed
+Qwen2.5-Math-7B,vanilla,putnam_2019_B2_044,1.0,True,2,19515.0,357.6357,30.54,6527.0,success
+Qwen2.5-Math-7B,vanilla,putnam_2020_A3_045,1.0,True,91,23313.0,432.6697,23.07,6527.0,success
+Qwen2.5-Math-7B,vanilla,putnam_2021_B4_046,0.0,False,,386813.0,6187.1663,23.09,6527.0,failed
+Qwen2.5-Math-7B,vanilla,putnam_2022_A5_047,0.0,False,50 \times !49,36453.0,629.7227,48.11,6527.0,failed
+Qwen2.5-Math-7B,vanilla,putnam_2023_B6_048,1.0,True,1225,34782.0,620.0602,49.5,6527.0,success
+Qwen2.5-Math-7B,vanilla,putnam_2000_A1_049,0.0,False,,386828.0,6196.6976,23.19,6527.0,failed
+Qwen2.5-Math-7B,vanilla,putnam_2001_B2_050,0.0,False,f(0),57500.0,960.6657,30.01,6527.0,failed
+Qwen3-4B-Thinking,agentic,putnam_2000_A1_001,0.0,False,Execution completed with no output,25047.0,1739.9437,155.24,4058.0,success
+Qwen3-4B-Thinking,agentic,putnam_2001_B2_002,0.0,False,Execution completed with no output,23531.0,1716.9172,152.5,4058.0,success
+Qwen3-4B-Thinking,agentic,putnam_2002_A3_003,0.0,False,Execution completed with no output,23797.0,1722.4049,153.53,4058.0,success
+Qwen3-4B-Thinking,agentic,putnam_2003_B4_004,0.0,False,Execution completed with no output,23703.0,1744.5053,153.54,4058.0,success
+Qwen3-4B-Thinking,agentic,putnam_2004_A5_005,0.0,False,Execution completed with no output,23422.0,1716.7979,153.44,4058.0,success
+Qwen3-4B-Thinking,agentic,putnam_2005_B6_006,1.0,True,28,20813.0,1537.835,155.22,4058.0,success
+Qwen3-4B-Thinking,agentic,putnam_2006_A1_007,0.0,False,Execution completed with no output,24063.0,1740.2669,155.09,4058.0,success
+Qwen3-4B-Thinking,agentic,putnam_2007_B2_008,0.0,False,Execution completed with no output,23312.0,1769.5268,152.05,4058.0,success
+Qwen3-4B-Thinking,agentic,putnam_2008_A3_009,1.0,True,2,22360.0,1616.45,155.19,4058.0,success
+Qwen3-4B-Thinking,agentic,putnam_2009_B4_010,1.0,True,21,19563.0,1346.3047,153.55,4058.0,success
+Qwen3-4B-Thinking,agentic,putnam_2010_A5_011,0.0,False,Execution completed with no output,23547.0,1733.1987,155.49,4058.0,success
+Qwen3-4B-Thinking,agentic,putnam_2011_B6_012,0.0,False,Execution completed with no output,23781.0,1764.563,153.41,4057.0,success
+Qwen3-4B-Thinking,agentic,putnam_2012_A1_013,0.0,False,Execution completed with no output,23781.0,1729.1245,153.9,4057.0,success
+Qwen3-4B-Thinking,agentic,putnam_2013_B2_014,0.0,False,Execution completed with no output,18812.0,1350.0043,155.47,4057.0,success
+Qwen3-4B-Thinking,agentic,putnam_2014_A3_015,0.0,False,Execution completed with no output,24422.0,1789.1979,156.08,4057.0,success
+Qwen3-4B-Thinking,agentic,putnam_2015_B4_016,1.0,True,2,22656.0,1680.2642,153.54,4057.0,success
+Qwen3-4B-Thinking,agentic,putnam_2016_A5_017,0.0,False,Execution completed with no output,23735.0,1764.5192,153.3,4057.0,success
+Qwen3-4B-Thinking,agentic,putnam_2017_B6_018,0.0,False,Execution completed with no output,24407.0,1751.099,153.27,4057.0,success
+Qwen3-4B-Thinking,agentic,putnam_2018_A1_019,0.0,False,Execution completed with no output,24344.0,1781.4281,153.7,4057.0,success
+Qwen3-4B-Thinking,agentic,putnam_2019_B2_020,1.0,True,231,18375.0,1370.7305,155.41,4057.0,success
+Qwen3-4B-Thinking,agentic,putnam_2020_A3_021,0.0,False,Execution completed with no output,24484.0,1772.6307,155.98,4057.0,success
+Qwen3-4B-Thinking,agentic,putnam_2021_B4_022,0.0,False,Execution completed with no output,23703.0,1758.8561,152.32,4057.0,success
+Qwen3-4B-Thinking,agentic,putnam_2022_A5_023,1.0,True,2,19063.0,1419.6173,153.99,4057.0,success
+Qwen3-4B-Thinking,agentic,putnam_2023_B6_024,1.0,True,49,19516.0,1441.6917,153.02,4057.0,success
+Qwen3-4B-Thinking,agentic,putnam_2000_A1_025,0.0,False,Execution completed with no output,23547.0,1798.2953,153.92,4057.0,success
+Qwen3-4B-Thinking,agentic,putnam_2001_B2_026,0.0,False,Execution completed with no output,23390.0,1729.2718,153.53,4057.0,success
+Qwen3-4B-Thinking,agentic,putnam_2002_A3_027,1.0,True,406,18609.0,1379.0282,155.02,4057.0,success
+Qwen3-4B-Thinking,agentic,putnam_2003_B4_028,0.0,False,Execution completed with no output,18750.0,1351.3997,153.38,4057.0,success
+Qwen3-4B-Thinking,agentic,putnam_2004_A5_029,0.0,False,Execution completed with no output,23547.0,1775.9424,152.91,4057.0,success
+Qwen3-4B-Thinking,agentic,putnam_2005_B6_030,0.0,False,Execution completed with no output,23719.0,1758.7022,153.51,4057.0,success
+Qwen3-4B-Thinking,agentic,putnam_2006_A1_031,1.0,True,63,23875.0,1568.3896,164.86,4527.0,success
+Qwen3-4B-Thinking,agentic,putnam_2007_B2_032,0.0,False,Execution completed with no output,28688.0,1938.0719,153.55,4195.0,success
+Qwen3-4B-Thinking,agentic,putnam_2008_A3_033,0.0,False,Execution completed with no output,25687.0,1922.3919,154.23,4195.0,success
+Qwen3-4B-Thinking,agentic,putnam_2009_B4_034,1.0,True,630,22828.0,1605.5604,154.47,4195.0,success
+Qwen3-4B-Thinking,agentic,putnam_2010_A5_035,0.0,False,Execution completed with no output,26453.0,1854.3266,156.24,4434.0,success
+Qwen3-4B-Thinking,agentic,putnam_2011_B6_036,0.0,False,Execution completed with no output,30875.0,1912.5146,154.42,4434.0,success
+Qwen3-4B-Thinking,agentic,putnam_2012_A1_037,0.0,False,Execution completed with no output,24015.0,1803.2356,155.0,4149.0,success
+Qwen3-4B-Thinking,agentic,putnam_2013_B2_038,0.0,False,Execution completed with no output,24453.0,1832.2842,156.75,4149.0,success
+Qwen3-4B-Thinking,agentic,putnam_2014_A3_039,0.0,False,Execution completed with no output,24687.0,1838.1064,154.65,4135.0,success
+Qwen3-4B-Thinking,agentic,putnam_2015_B4_040,0.0,False,Execution completed with no output,23875.0,1821.3012,156.82,4135.0,success
+Qwen3-4B-Thinking,agentic,putnam_2016_A5_041,1.0,True,903,21297.0,1545.8537,155.69,4135.0,success
+Qwen3-4B-Thinking,agentic,putnam_2017_B6_042,0.0,False,Execution completed with no output,18563.0,1362.6334,157.26,4135.0,success
+Qwen3-4B-Thinking,agentic,putnam_2018_A1_043,0.0,False,Execution completed with no output,23812.0,1821.2642,154.57,4135.0,success
+Qwen3-4B-Thinking,agentic,putnam_2019_B2_044,0.0,False,Execution completed with no output,24094.0,1809.9885,155.78,4135.0,success
+Qwen3-4B-Thinking,agentic,putnam_2020_A3_045,0.0,False,Execution completed with no output,24359.0,1813.2867,156.12,4135.0,success
+Qwen3-4B-Thinking,agentic,putnam_2021_B4_046,0.0,False,Execution completed with no output,24297.0,1781.0706,154.18,4135.0,success
+Qwen3-4B-Thinking,agentic,putnam_2022_A5_047,0.0,False,Execution completed with no output,23562.0,1826.9484,155.23,4135.0,success
+Qwen3-4B-Thinking,agentic,putnam_2023_B6_048,1.0,True,1225,20266.0,1516.521,155.54,4135.0,success
+Qwen3-4B-Thinking,agentic,putnam_2000_A1_049,0.0,False,Execution completed with no output,23906.0,1815.7178,156.08,4135.0,success
+Qwen3-4B-Thinking,agentic,putnam_2001_B2_050,0.0,False,Execution completed with no output,23687.0,1807.5261,153.97,4135.0,success
+Qwen3-4B-Thinking,vanilla,putnam_2000_A1_001,0.0,False,,14250.0,1159.4325,72.93,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2001_B2_002,0.0,False,,14250.0,1138.9274,59.98,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2002_A3_003,0.0,False,,14328.0,1135.3675,59.89,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2003_B4_004,0.0,False,,14313.0,1125.6979,35.43,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2004_A5_005,0.0,False,,14281.0,1118.1474,61.18,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2005_B6_006,0.0,False,2,14688.0,1128.1485,35.54,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2006_A1_007,0.0,False,,14344.0,1111.1956,60.16,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2007_B2_008,0.0,False,,14313.0,1118.0819,59.17,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2008_A3_009,0.0,False,,14343.0,1109.9766,34.7,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2009_B4_010,0.0,False,,14297.0,1108.3503,59.36,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2010_A5_011,0.0,False,,14297.0,1109.0479,59.3,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2011_B6_012,0.0,False,,14359.0,1117.8313,52.09,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2012_A1_013,0.0,False,2,14313.0,1105.8808,34.89,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2013_B2_014,0.0,False,,14297.0,1110.6368,34.99,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2014_A3_015,0.0,False,,14344.0,1107.2281,35.01,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2015_B4_016,0.0,False,,14250.0,1116.2571,35.29,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2016_A5_017,0.0,False,,14313.0,1105.6723,35.36,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2017_B6_018,0.0,False,,14390.0,1119.7649,59.86,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2018_A1_019,0.0,False,,14250.0,1102.3936,59.57,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2019_B2_020,0.0,False,,14313.0,1105.1667,59.99,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2020_A3_021,0.0,False,,14281.0,1114.698,60.02,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2021_B4_022,0.0,False,,14360.0,1106.5328,59.7,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2022_A5_023,0.0,False,,14359.0,1107.2482,35.45,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2023_B6_024,0.0,False,1,14344.0,1102.2049,42.88,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2000_A1_025,0.0,False,,14282.0,1101.1199,35.53,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2001_B2_026,0.0,False,,14328.0,1108.1855,35.58,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2002_A3_027,0.0,False,1,14640.0,1104.9401,36.08,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2003_B4_028,0.0,False,,14437.0,1107.296,58.07,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2004_A5_029,0.0,False,,14500.0,1112.7456,61.59,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2005_B6_030,0.0,False,,14375.0,1106.1839,36.12,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2006_A1_031,0.0,False,2,14360.0,1111.8744,62.16,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2007_B2_032,0.0,False,,14390.0,1107.0427,60.77,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2008_A3_033,0.0,False,,14344.0,1095.2106,60.66,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2009_B4_034,0.0,False,,14344.0,1111.9741,42.91,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2010_A5_035,0.0,False,,14282.0,1092.1671,60.69,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2011_B6_036,0.0,False,,14328.0,1109.9114,36.19,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2012_A1_037,0.0,False,,14469.0,1109.3282,36.19,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2013_B2_038,0.0,False,,14375.0,1107.2365,62.28,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2014_A3_039,0.0,False,,14328.0,1105.2339,60.84,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2015_B4_040,0.0,False,,14578.0,1110.0768,36.29,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2016_A5_041,0.0,False,,14390.0,1108.2878,36.32,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2017_B6_042,0.0,False,,14391.0,1098.965,36.32,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2018_A1_043,0.0,False,,14313.0,1104.1911,36.34,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2019_B2_044,0.0,False,,14343.0,1103.4568,62.37,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2020_A3_045,0.0,False,1,14281.0,1092.8435,36.38,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2021_B4_046,0.0,False,,14360.0,1118.407,36.4,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2022_A5_047,0.0,False,,14343.0,1092.4138,36.43,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2023_B6_048,0.0,False,0,14657.0,1113.2335,36.57,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2000_A1_049,0.0,False,,14406.0,1084.8552,36.56,4058.0,failed
+Qwen3-4B-Thinking,vanilla,putnam_2001_B2_050,0.0,False,,14344.0,1103.4087,36.61,4058.0,failed
