@@ -82,7 +82,7 @@ def _add_runner_arguments(p: argparse.ArgumentParser) -> None:
     )
     p.add_argument(
         "--dataset", type=str, default="math",
-        help="Dataset to evaluate on: 'math', 'putnam', 'lila', 'all', 'synthetic', 'gsm8k', 'infiagent', 'bird_sql', 'databench'.",
+        help="Dataset to evaluate on: 'math', 'putnam', 'lila', 'all', 'synthetic', 'gsm8k', 'svamp', 'infiagent', 'bird_sql', 'databench'.",
     )
     p.add_argument(
         "--models", type=str, default="mock",

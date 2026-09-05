@@ -38,7 +38,7 @@ class DatasetSpec(BaseModel):
 
     name: str = Field(
         default="math",
-        description="Dataset name: 'math', 'putnam', 'lila', 'all', 'synthetic', 'gsm8k', 'infiagent', 'bird_sql', 'databench'."
+        description="Dataset name: 'math', 'putnam', 'lila', 'all', 'synthetic', 'gsm8k', 'svamp', 'infiagent', 'bird_sql', 'databench'."
     )
     category: Optional[str] = Field(default=None, description="Subcategory filter (e.g. 'algebra', 'calculus').")
     subdiscipline: Optional[str] = Field(default=None, description="Subdiscipline filter alias.")

@@ -405,8 +405,14 @@ class BenchmarkRunner:
                     loaded["synthetic"] = tasks
                 elif ds_name_lower == "gsm8k":
                     from nemo_eval.datasets.gsm8k import GSM8KLoader
-                    loader = GSM8KLoader(split=ds_spec.split, max_tasks=ds_spec.max_tasks or 50)
-                    loaded["gsm8k"] = loader.load(limit=ds_spec.max_tasks)
+                    loader = GSM8KLoader(dataset_root=ds_spec.data_dir, split=ds_spec.split, max_tasks=ds_spec.max_tasks)
+                    tasks = loader.load(split=ds_spec.split, limit=ds_spec.max_tasks)
+                    loaded["gsm8k"] = tasks
+                elif ds_name_lower == "svamp":
+                    from nemo_eval.datasets.svamp import SVAMPLoader
+                    loader = SVAMPLoader(dataset_root=ds_spec.data_dir, split=ds_spec.split, max_tasks=ds_spec.max_tasks, category=ds_spec.category)
+                    tasks = loader.load(split=ds_spec.split, limit=ds_spec.max_tasks)
+                    loaded["svamp"] = tasks
                 elif ds_name_lower == "infiagent":
                     from nemo_eval.datasets.infiagent import InfiAgentLoader
                     loader = InfiAgentLoader(data_dir=ds_spec.data_dir or "")

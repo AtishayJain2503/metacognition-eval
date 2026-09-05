@@ -40,21 +40,37 @@ class PutnamBenchLoader(BaseDatasetLoader):
         category: Optional[str] = None,
         max_tasks: Optional[int] = 50,
         use_fixture: bool = True,
+        use_1000: bool = False,
+        fixture_name: Optional[str] = None,
     ):
         split_enum = TaskSplit(split) if isinstance(split, str) and split in TaskSplit._value2member_map_ else (
             split if isinstance(split, TaskSplit) else TaskSplit.TEST
         )
         super().__init__(dataset_root=dataset_root, split=split_enum)
+        if use_1000 and max_tasks == 50:
+            max_tasks = None
         self.category = category
         self.max_tasks = max_tasks
         self.use_fixture = use_fixture
+        self.use_1000 = use_1000
+        self.fixture_name = fixture_name
         self._raw_tasks: Optional[List[BenchmarkTask]] = None
 
+    def _resolve_fixture_filename(self) -> str:
+        if self.fixture_name:
+            return self.fixture_name
+        if self.use_1000 or (self.max_tasks is not None and self.max_tasks > 50):
+            fixtures_dir = Path(self.dataset_root) if self.dataset_root else Path(__file__).parent / "fixtures"
+            if (fixtures_dir / "putnam_1000.jsonl").exists():
+                return "putnam_1000.jsonl"
+        return "putnam_tasks.jsonl"
+
     def _get_fixture_path(self) -> Path:
-        if self.dataset_root and os.path.exists(os.path.join(self.dataset_root, "putnam_tasks.jsonl")):
-            return Path(self.dataset_root) / "putnam_tasks.jsonl"
+        filename = self._resolve_fixture_filename()
+        if self.dataset_root and os.path.exists(os.path.join(self.dataset_root, filename)):
+            return Path(self.dataset_root) / filename
         fixtures_dir = Path(__file__).parent / "fixtures"
-        return fixtures_dir / "putnam_tasks.jsonl"
+        return fixtures_dir / filename
 
     def _load_raw_tasks(self) -> List[BenchmarkTask]:
         if self._raw_tasks is not None:
@@ -79,8 +95,13 @@ class PutnamBenchLoader(BaseDatasetLoader):
         self._raw_tasks = tasks
         return self._raw_tasks
 
-    def load_tasks(self, limit: Optional[int] = None) -> List[BenchmarkTask]:
+    def load_tasks(self, limit: Optional[int] = None, use_1000: Optional[bool] = None) -> List[BenchmarkTask]:
         """Load and parse PutnamBench tasks with optional category filtering and sample limits."""
+        if use_1000 is not None and use_1000 != self.use_1000:
+            self.use_1000 = use_1000
+            if use_1000 and self.max_tasks == 50:
+                self.max_tasks = None
+            self._raw_tasks = None
         all_tasks = self._load_raw_tasks()
         filtered = all_tasks
 
@@ -105,6 +126,7 @@ class PutnamBenchLoader(BaseDatasetLoader):
         split: Optional[Union[TaskSplit, str]] = None,
         limit: Optional[int] = None,
         category: Optional[str] = None,
+        use_1000: Optional[bool] = None,
     ) -> List[BenchmarkTask]:
         """Convenience alias conforming to PROJECT.md interface contract."""
         if split is not None:
@@ -114,7 +136,7 @@ class PutnamBenchLoader(BaseDatasetLoader):
                 self.split = TaskSplit(split)
         if category is not None:
             self.category = category
-        return self.load_tasks(limit=limit)
+        return self.load_tasks(limit=limit, use_1000=use_1000)
 
     def get_task(self, task_id: str) -> BenchmarkTask:
         """Retrieve a single task by unique identifier."""

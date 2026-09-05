@@ -37,6 +37,9 @@ from nemo_eval.datasets.math import (
 from nemo_eval.datasets.putnam import (
     PutnamBenchLoader,
 )
+from nemo_eval.datasets.svamp import (
+    SVAMPLoader,
+)
 from nemo_eval.datasets.synthetic import (
     SyntheticBenchmarkGenerator,
 )
@@ -60,4 +63,5 @@ __all__ = [
     "MATHLoader",
     "PutnamBenchLoader",
     "LilaLoader",
+    "SVAMPLoader",
 ]

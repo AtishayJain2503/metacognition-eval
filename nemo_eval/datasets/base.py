@@ -40,7 +40,7 @@ class BenchmarkTask(BaseModel):
 
     task_id: str = Field(..., description="Unique task identifier across benchmarks.")
     benchmark_name: Literal[
-        "infiagent", "bird_sql", "databench", "synthetic", "gsm8k", "math", "putnam", "lila"
+        "infiagent", "bird_sql", "databench", "synthetic", "gsm8k", "math", "putnam", "lila", "svamp"
     ] = Field(
         ..., description="Name of the benchmark suite."
     )

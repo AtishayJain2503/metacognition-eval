@@ -120,3 +120,34 @@ class TestPutnamBenchLoader:
         loader = PutnamBenchLoader()
         with pytest.raises(ValueError, match="Unknown split"):
             loader.load(split="invalid_split_foo")
+
+    def test_putnam_loader_use_1000_fallback_when_absent(self):
+        """When use_1000 is requested but putnam_1000.jsonl is absent, cleanly fallback."""
+        loader = PutnamBenchLoader(use_1000=True)
+        tasks = loader.load_tasks()
+        assert len(tasks) in (50, 1000)
+
+    def test_putnam_loader_1000_tasks_from_custom_root(self, tmp_path):
+        """PutnamBenchLoader correctly loads from putnam_1000.jsonl when present."""
+        import json
+        custom_dir = tmp_path / "putnam_data"
+        custom_dir.mkdir(parents=True, exist_ok=True)
+        sample_tasks = [
+            {
+                "task_id": f"putnam_comp_{i:04d}",
+                "benchmark_name": "putnam",
+                "query": f"Putnam Problem {i}. Final answer in \\boxed{{}}.",
+                "ground_truth": f"\\boxed{{{i}}}",
+                "eval_type": "math_symbolic",
+                "metadata": {"category": "calculus", "year": 2020},
+            }
+            for i in range(1, 101)
+        ]
+        with open(custom_dir / "putnam_1000.jsonl", "w", encoding="utf-8") as f:
+            for t in sample_tasks:
+                f.write(json.dumps(t) + "\n")
+
+        loader = PutnamBenchLoader(dataset_root=str(custom_dir), use_1000=True, max_tasks=100)
+        tasks = loader.load_tasks()
+        assert len(tasks) == 100
+        assert tasks[0].task_id == "putnam_comp_0001"

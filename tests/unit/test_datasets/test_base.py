@@ -35,6 +35,19 @@ class TestBenchmarkTaskModel:
         assert task.eval_type == "float_tol"
         assert task.metadata["difficulty"] == "easy"
 
+    def test_benchmark_task_svamp_valid(self):
+        """Task accepts svamp as valid benchmark_name."""
+        task = BenchmarkTask(
+            task_id="svamp_001",
+            benchmark_name="svamp",
+            query="Solve 5 + 3.",
+            ground_truth=8.0,
+            eval_type="float_tol",
+            metadata={"type": "Common-Addition"}
+        )
+        assert task.benchmark_name == "svamp"
+        assert task.eval_type == "float_tol"
+
     def test_benchmark_task_validation_missing_required(self):
         """Missing required fields raises ValidationError."""
         with pytest.raises(ValidationError):

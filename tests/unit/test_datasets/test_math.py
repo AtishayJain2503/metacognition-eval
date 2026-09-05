@@ -130,3 +130,35 @@ class TestMATHLoader:
         assert reconstructed.task_id == task.task_id
         assert reconstructed.benchmark_name == task.benchmark_name
         assert reconstructed.ground_truth == task.ground_truth
+
+    def test_math_loader_use_1000_fallback_when_absent(self):
+        """When use_1000 is requested but math_1000.jsonl is not in default dir, cleanly fallback."""
+        loader = MATHLoader(use_1000=True)
+        tasks = loader.load_tasks()
+        # Either loads math_1000.jsonl (if created) or falls back to 50 tasks
+        assert len(tasks) in (50, 1000)
+
+    def test_math_loader_1000_tasks_from_custom_root(self, tmp_path):
+        """MATHLoader correctly loads from math_1000.jsonl when present."""
+        import json
+        custom_dir = tmp_path / "math_data"
+        custom_dir.mkdir(parents=True, exist_ok=True)
+        sample_tasks = [
+            {
+                "task_id": f"math_alg_{i:04d}",
+                "benchmark_name": "math",
+                "query": f"Problem {i}. Final answer in \\boxed{{}}.",
+                "ground_truth": f"\\boxed{{{i}}}",
+                "eval_type": "math_symbolic",
+                "metadata": {"subject": "Algebra", "level": 1},
+            }
+            for i in range(1, 101)
+        ]
+        with open(custom_dir / "math_1000.jsonl", "w", encoding="utf-8") as f:
+            for t in sample_tasks:
+                f.write(json.dumps(t) + "\n")
+
+        loader = MATHLoader(dataset_root=str(custom_dir), use_1000=True, max_tasks=100)
+        tasks = loader.load_tasks()
+        assert len(tasks) == 100
+        assert tasks[0].task_id == "math_alg_0001"
