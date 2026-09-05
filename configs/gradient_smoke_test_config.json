@@ -1,0 +1,43 @@
+{
+  "run_label": "Smoke_Test_Code_Logic_Verification",
+  "output_dir": "./results/smoke_test",
+  "mode": "both",
+  "models": [
+    {
+      "name": "Llama3.2-3B",
+      "provider": "ollama",
+      "model_id": "llama3.2:3b",
+      "base_url": "http://localhost:11434/v1"
+    }
+  ],
+  "datasets": [
+    {
+      "name": "svamp",
+      "split": "test",
+      "max_tasks": 1
+    },
+    {
+      "name": "gsm8k",
+      "split": "test",
+      "max_tasks": 1
+    },
+    {
+      "name": "math",
+      "split": "test",
+      "max_tasks": 1
+    },
+    {
+      "name": "putnam",
+      "split": "test",
+      "max_tasks": 1
+    }
+  ],
+  "max_turns": 4,
+  "max_correction_attempts": 1,
+  "enable_planning": false,
+  "verify_intermediate": false,
+  "temperature": 0.0,
+  "max_tokens": 512,
+  "export_jsonl": true,
+  "export_otlp": false
+}

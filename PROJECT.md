@@ -128,6 +128,16 @@ C:\Projects\MetaCognition/
 | 20 | Streaming JSONL Telemetry Traces | Comprehensive episode-by-episode JSONL output under `results/` | M4 | ORIGINAL_REQUEST §AC |
 | 21 | E2E Test Suite Tiers 1-4 | Requirement-driven opaque-box test suite (Feature coverage, BVA, Pairwise, Real-world scenarios) | M5 | TEST_INFRA |
 | 22 | Adversarial Hardening (Tier 5) | White-box adversarial testing, edge cases, stress tests, zero gaps | M5 | TEST_INFRA |
+| 23 | 1,000 MATH Ingestion & Stratified Sampling | Stratified sample across 7 subjects and difficulty Levels 1–5 | M6 | ORIGINAL_REQUEST §R1 |
+| 24 | 1,000 PutnamBench Curation | Historical 1962–2024 problems and computational variants with closed-form targets | M6 | ORIGINAL_REQUEST §R1 |
+| 25 | 1,000 GSM8K Test Curation | 1,000 test-split problems with exact integer ground-truth extraction | M6 | ORIGINAL_REQUEST §R1 |
+| 26 | 1,000 SVAMP Challenge Curation | Complete 1,000 challenge dataset with float/integer tolerances | M6 | ORIGINAL_REQUEST §R1 |
+| 27 | Ground-Truth Normalization Pipeline | Enforce strict \boxed{} targets, normalized whitespace, LaTeX, and units | M6 | ORIGINAL_REQUEST §R3 |
+| 28 | Offline JSONL Fixtures & CSV Catalogs | nemo_eval/datasets/fixtures/*_1000.jsonl and results/*_catalog.csv | M6 | ORIGINAL_REQUEST §R4 |
+| 29 | Modular Loaders & Schema Integration | nemo_eval/datasets/ base.py, gsm8k.py, svamp.py, math.py, putnam.py, __init__.py | M7 | ORIGINAL_REQUEST §R1 |
+| 30 | Methodological Sampling Rationale Report | Author comprehensive DATASET_SAMPLING_RATIONALE.md | M8 | ORIGINAL_REQUEST §R2 |
+| 31 | Integration Testing & Automated Verification | Schema validation, evaluator compatibility, dry-runs, 100% pass rate | M9 | ORIGINAL_REQUEST §R5 |
+| 32 | Adversarial Hardening & Forensic Audit | Challenger adversarial verification and Auditor forensic integrity checks | M10 | PROJECT_PATTERN |
 
 ---
 
@@ -140,6 +150,11 @@ C:\Projects\MetaCognition/
 | M3 | Dual-Mode Evaluation Engine | `VanillaEngine` (0-tool CoT), `AgentLoop` dual-mode orchestration, split parity runner | M1, M2 | DONE |
 | M4 | Automated Multi-Model Sweeps & Comprehensive Reporting | CLI sweep runner for 7 models, Markdown scorecards, comparison tables, energy/resource leaderboards under `results/` | M1, M2, M3 | DONE |
 | M5 | 100% E2E Test Suite Pass & Adversarial Hardening | Pass all Tiers 1-4 E2E tests, execute Tier 5 adversarial hardening, gate validation | M1, M2, M3, M4 | DONE |
+| M6 | Ground-Truth Normalization & 4x1,000 Offline Fixtures & CSV Catalogs | Generate `math_1000.jsonl`, `putnam_1000.jsonl`, `gsm8k_1000.jsonl`, `svamp_1000.jsonl` and 4 CSV catalogs in `results/` | None | DONE |
+| M7 | Modular Loaders Architecture & Schema Integration | Update `base.py` (`svamp`), refactor `gsm8k.py`, create `svamp.py`, update `math.py`, `putnam.py`, `__init__.py`, `runner.py` | M6 | DONE |
+| M8 | Methodological Sampling Rationale Report | Author `DATASET_SAMPLING_RATIONALE.md` with stratification tables, balance stats, taxonomy, closed-form vs proof | None | DONE |
+| M9 | Integration Testing & Automated Verification Suite | Author `tests/unit/test_datasets/test_expanded_1000.py` and verify all tests pass | M6, M7 | DONE |
+| M10 | Adversarial Coverage Hardening & Forensic Integrity Audit | Challenger adversarial stress tests and Forensic Auditor integrity verification | M6, M7, M8, M9 | IN_PROGRESS |
 
 ---
 
